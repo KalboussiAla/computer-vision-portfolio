@@ -6,57 +6,32 @@
   <title>Kalboussi Ala - Computer Vision Portfolio</title>
   <style>
     :root {
-      --ink: #17212b;
-      --muted: #5f6b76;
-      --accent: #0a5f78;
-      --accent-dark: #073b4c;
-      --warm: #8a5a28;
-      --green: #276749;
-      --line: #d8e1e7;
-      --bg: #f6f8fa;
+      --ink: #111827;
+      --muted: #5e6875;
+      --accent: #0b6374;
+      --accent-2: #2f6f56;
+      --line: #d9e2e7;
+      --bg: #f7f9fb;
       --panel: #ffffff;
-      --soft: #eef6f8;
-      --warm-soft: #fff4e6;
-      --green-soft: #edf7f1;
+      --soft: #edf7f8;
+      --soft-2: #f1f7f3;
+      --dark: #071d26;
     }
 
     * { box-sizing: border-box; }
-
-    html { overflow-x: hidden; }
+    html, body { overflow-x: hidden; }
 
     body {
       margin: 0;
-      background: var(--bg);
+      background:
+        linear-gradient(180deg, #f7f9fb 0%, #f4f7f8 48%, #f9fafb 100%);
       color: var(--ink);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.55;
-      overflow-x: hidden;
     }
 
     a { color: var(--accent); }
-
-    a,
-    p,
-    li,
-    h1,
-    h2,
-    h3,
-    span,
-    strong,
-    figcaption {
-      overflow-wrap: break-word;
-    }
-
-    header {
-      color: white;
-      background:
-        linear-gradient(rgba(5, 26, 34, .88), rgba(5, 26, 34, .82)),
-        url("assets/pfe/pipe-ai-pipeline.png");
-      background-size: cover;
-      background-position: center;
-      padding: 68px 24px 52px;
-      border-bottom: 1px solid rgba(255,255,255,.18);
-    }
+    a, p, li, h1, h2, h3, span, strong { overflow-wrap: break-word; }
 
     .wrap {
       width: 100%;
@@ -65,9 +40,49 @@
       min-width: 0;
     }
 
+    header {
+      position: relative;
+      isolation: isolate;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(7, 29, 38, .98), rgba(10, 65, 74, .92)),
+        repeating-linear-gradient(115deg, rgba(255,255,255,.06) 0 1px, transparent 1px 28px);
+      overflow: hidden;
+      padding: 70px 24px 56px;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, rgba(120, 218, 232, .08) 0 1px, transparent 1px 78px),
+        repeating-linear-gradient(0deg, rgba(120, 218, 232, .06) 0 1px, transparent 1px 78px);
+      transform: translateY(-12px);
+      animation: gridFlow 18s linear infinite;
+      z-index: -2;
+    }
+
+    #flow-field {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: .58;
+    }
+
+    @keyframes gridFlow {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 78px 0, 0 78px; }
+    }
+
     .eyebrow {
-      margin: 0 0 10px;
-      color: #aee1ed;
+      margin: 0 0 12px;
+      color: #b4edf4;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0;
@@ -76,23 +91,55 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(34px, 5.5vw, 60px);
-      line-height: 1.04;
+      max-width: 820px;
+      font-size: clamp(38px, 6vw, 66px);
+      line-height: 1.03;
       letter-spacing: 0;
     }
 
     .subtitle {
-      max-width: 820px;
-      margin: 16px 0 0;
-      color: #edf7f9;
+      max-width: 780px;
+      margin: 18px 0 0;
+      color: #edf9fb;
       font-size: 18px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(128px, 1fr));
+      gap: 10px;
+      max-width: 920px;
+      margin-top: 28px;
+    }
+
+    .hero-metric {
+      min-width: 0;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 8px;
+      padding: 14px;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-metric strong {
+      display: block;
+      color: #ffffff;
+      font-size: 25px;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
+
+    .hero-metric span {
+      color: #d5edf1;
+      font-size: 12px;
+      line-height: 1.35;
     }
 
     .actions {
       display: flex;
-      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 24px;
+      gap: 12px;
+      margin-top: 26px;
     }
 
     .button {
@@ -103,28 +150,29 @@
       min-height: 42px;
       padding: 10px 14px;
       border-radius: 8px;
+      text-align: center;
       text-decoration: none;
-      font-weight: 700;
+      white-space: normal;
       font-size: 14px;
-      border: 1px solid rgba(255,255,255,.44);
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,.42);
       color: white;
       background: rgba(255,255,255,.12);
-      text-align: center;
-      white-space: normal;
     }
 
     .button.primary {
+      color: var(--dark);
       background: white;
-      color: var(--accent-dark);
       border-color: white;
     }
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 2;
-      background: white;
+      z-index: 5;
+      background: rgba(255,255,255,.96);
       border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
     }
 
     nav .wrap {
@@ -141,18 +189,27 @@
       font-size: 14px;
     }
 
-    main { padding: 34px 24px 58px; }
+    main { padding: 36px 24px 58px; }
 
     section {
       width: 100%;
       max-width: 1120px;
-      margin: 0 auto 42px;
+      margin: 0 auto 44px;
       min-width: 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 22px;
+      margin-bottom: 18px;
     }
 
     h2 {
       margin: 0 0 12px;
-      font-size: 27px;
+      font-size: 28px;
+      line-height: 1.18;
       letter-spacing: 0;
     }
 
@@ -165,57 +222,15 @@
     p { margin: 0; }
 
     .lead {
-      max-width: 920px;
+      max-width: 900px;
       color: var(--muted);
       font-size: 16px;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    .section-head .lead { max-width: 760px; }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(120px, 1fr));
-      gap: 10px;
-      margin-top: 22px;
-      min-width: 0;
-    }
-
-    .metric {
-      min-width: 0;
-      min-height: 94px;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-    }
-
-    .metric strong {
-      display: block;
-      color: var(--accent-dark);
-      font-size: 23px;
-      line-height: 1.05;
-      margin-bottom: 6px;
-    }
-
-    .metric span {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.35;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
       gap: 14px;
-      margin-top: 18px;
       min-width: 0;
     }
 
@@ -225,6 +240,14 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 18px;
+      box-shadow: 0 14px 32px rgba(20, 36, 47, .04);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #b8cbd4;
+      box-shadow: 0 18px 38px rgba(20, 36, 47, .08);
     }
 
     .card p,
@@ -238,105 +261,112 @@
       padding-left: 18px;
     }
 
-    .pillrow {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .pill {
-      background: var(--soft);
-      color: var(--accent);
-      border: 1px solid #cde3e9;
-      border-radius: 999px;
-      padding: 4px 9px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .pill.warm {
-      color: var(--warm);
-      background: var(--warm-soft);
-      border-color: #ead1b1;
-    }
-
-    .pill.green {
-      color: var(--green);
-      background: var(--green-soft);
-      border-color: #c9e5d2;
-    }
-
-    .image-grid {
+    .metrics {
       display: grid;
-      grid-template-columns: 1.35fr 1fr;
-      gap: 14px;
-      align-items: stretch;
-      margin-top: 18px;
-      min-width: 0;
-    }
-
-    .figure {
-      min-width: 0;
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 12px;
-    }
-
-    .figure img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 6px;
-      background: white;
-    }
-
-    .caption {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 18px;
-      min-width: 0;
-    }
-
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(6, minmax(120px, 1fr));
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 20px;
       min-width: 0;
     }
 
-    .step {
+    .metric {
       min-width: 0;
+      min-height: 96px;
       background: white;
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 14px;
-      min-height: 124px;
     }
 
-    .step strong {
+    .metric strong {
+      display: block;
+      color: var(--accent);
+      font-size: 24px;
+      line-height: 1.05;
+      margin-bottom: 7px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .flow-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+      counter-reset: step;
+    }
+
+    .flow-item {
+      position: relative;
+      min-width: 0;
+      min-height: 134px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 16px 16px;
+      overflow: hidden;
+    }
+
+    .flow-item::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 26px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      color: var(--accent);
+      background: var(--soft);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .flow-item strong {
       display: block;
       margin-bottom: 7px;
       color: var(--ink);
     }
 
-    .step p {
+    .flow-item p {
       color: var(--muted);
       font-size: 14px;
     }
 
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 9px;
+      border: 1px solid #cbe2e6;
+      border-radius: 999px;
+      color: var(--accent);
+      background: var(--soft);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tag.green {
+      color: var(--accent-2);
+      border-color: #cae1d2;
+      background: var(--soft-2);
+    }
+
     .project-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(242px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
       gap: 10px;
       margin-top: 16px;
       min-width: 0;
@@ -344,13 +374,19 @@
 
     .project {
       min-width: 0;
-      min-height: 88px;
+      min-height: 86px;
       background: white;
       border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 12px 14px;
+      padding: 13px 14px;
       font-size: 14px;
       font-weight: 700;
+      transition: border-color .18s ease, transform .18s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-2px);
+      border-color: #b8cbd4;
     }
 
     .project span {
@@ -361,32 +397,34 @@
       font-weight: 400;
     }
 
-    .note {
-      border-left: 4px solid var(--warm);
-      background: var(--warm-soft);
-      padding: 14px 16px;
-      color: #473323;
-      border-radius: 6px;
+    .statement {
+      background:
+        linear-gradient(135deg, rgba(237,247,248,.92), rgba(241,247,243,.92)),
+        repeating-linear-gradient(115deg, rgba(11,99,116,.08) 0 1px, transparent 1px 34px);
+      border: 1px solid #cfe0e6;
+      border-radius: 8px;
+      padding: 20px;
+      color: #20313b;
     }
 
     footer {
+      background: white;
       border-top: 1px solid var(--line);
       padding: 22px 24px;
       color: var(--muted);
-      background: white;
     }
 
     @media (max-width: 880px) {
+      header { min-height: auto; }
+      .hero-metrics,
       .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .image-grid,
-      .two-col { grid-template-columns: 1fr; }
       .section-head { display: block; }
-      nav .wrap { gap: 12px; }
     }
 
     @media (max-width: 520px) {
-      header { padding: 52px 18px 42px; }
-      main { padding: 28px 18px 48px; }
+      header { padding: 54px 18px 44px; }
+      main { padding: 30px 18px 50px; }
+      .hero-metrics,
       .metrics { grid-template-columns: 1fr; }
       .button { width: 100%; }
       nav .wrap {
@@ -401,12 +439,19 @@
 </head>
 <body>
   <header>
+    <canvas id="flow-field" aria-hidden="true"></canvas>
     <div class="wrap">
-      <p class="eyebrow">Computer Vision | Applied AI | Industrial AI Systems</p>
+      <p class="eyebrow">Computer Vision | Applied AI | Research-Oriented Engineering</p>
       <h1>Kalboussi Ala</h1>
-      <p class="subtitle">I build complete AI workflows: datasets, annotation tools, model experiments, evaluation protocols, backend inference, and deployment-ready computer vision systems.</p>
+      <p class="subtitle">I build computer vision systems from messy real-world data to deployable AI workflows: annotation, training, evaluation, backend testing, and operational integration.</p>
+      <div class="hero-metrics">
+        <div class="hero-metric"><strong>91.8%</strong><span>final image-level counting accuracy in a confidential industrial PFE</span></div>
+        <div class="hero-metric"><strong>0.6</strong><span>mean absolute counting error per evaluated image</span></div>
+        <div class="hero-metric"><strong>1310+</strong><span>training runs across controlled model experiments</span></div>
+        <div class="hero-metric"><strong>10k+</strong><span>prediction and validation runs during iteration</span></div>
+      </div>
       <div class="actions">
-        <a class="button primary" href="#pipe-counting">Main PFE Case Study</a>
+        <a class="button primary" href="#pfe">Main PFE Case Study</a>
         <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/PROJECT_INDEX.md">Project Index</a>
         <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/case-studies/industrial-pipe-counting.md">Technical Notes</a>
         <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/RESEARCH_DIRECTION.md">Research Direction</a>
@@ -417,8 +462,8 @@
   <nav>
     <div class="wrap">
       <a href="#profile">Profile</a>
-      <a href="#pipe-counting">Pipe Counting</a>
-      <a href="#hydra">Hydra</a>
+      <a href="#pfe">PFE</a>
+      <a href="#data-platform">Data Platform</a>
       <a href="#projects">Projects</a>
       <a href="#stack">Stack</a>
       <a href="#contact">Contact</a>
@@ -430,180 +475,194 @@
       <div class="section-head">
         <div>
           <h2>Applied AI Profile</h2>
-          <p class="lead">My strongest work is in computer vision systems where the model is only one part of the solution. I focus on the full loop: real data, annotation quality, model selection, error analysis, deployment constraints, and business metrics.</p>
+          <p class="lead">My work is strongest when the problem is not clean: dense objects, imperfect labels, domain shift, long videos, industrial constraints, and a need for real metrics instead of only demo accuracy.</p>
         </div>
       </div>
 
       <div class="grid">
         <article class="card">
           <h3>Industrial computer vision</h3>
-          <p>Tube counting, visual inspection, defect detection, long-video processing, object counting, line crossing, ROI logic, and deployment for operational use.</p>
-          <div class="pillrow"><span class="pill">YOLO</span><span class="pill">OpenCV</span><span class="pill">MAE</span></div>
+          <p>Detection, counting, defect inspection, video analytics, ROI logic, batch processing, and model deployment for operational workflows.</p>
+          <div class="tag-row"><span class="tag">YOLO</span><span class="tag">OpenCV</span><span class="tag">MAE</span></div>
         </article>
         <article class="card">
           <h3>Fine-grained recognition</h3>
-          <p>Recognition of visually similar retail products using detection, embeddings, adapters, nearest-neighbor retrieval, and reference gallery engineering.</p>
-          <div class="pillrow"><span class="pill">DINOv2/v3</span><span class="pill">FAISS</span><span class="pill">kNN</span></div>
+          <p>Product and SKU recognition across visually similar classes using detection, embeddings, retrieval, adapters, and reference gallery engineering.</p>
+          <div class="tag-row"><span class="tag">DINO</span><span class="tag">FAISS</span><span class="tag">kNN</span></div>
         </article>
         <article class="card">
-          <h3>AI product engineering</h3>
-          <p>FastAPI services, GPU inference, batch endpoints, annotation platforms, experiment tracking, and model testing environments for real users.</p>
-          <div class="pillrow"><span class="pill">FastAPI</span><span class="pill">React</span><span class="pill">Go/gRPC</span></div>
+          <h3>AI systems engineering</h3>
+          <p>Annotation tools, experiment tracking, online testing environments, FastAPI inference services, batch endpoints, and GPU-backed deployment.</p>
+          <div class="tag-row"><span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Go/gRPC</span></div>
         </article>
       </div>
     </section>
 
-    <section id="pipe-counting">
+    <section id="pfe">
       <div class="section-head">
         <div>
-          <h2>PFE Case Study: Industrial Pipe Counting</h2>
-          <p class="lead">The PFE goal was to improve an industrial tube counting model for real client delivery images. This was not a simple detection demo: the model had to count dense, repetitive objects reliably enough to support operational decisions and reduce manual counting.</p>
+          <h2>PFE: Industrial Object Counting</h2>
+          <p class="lead">A confidential industrial computer vision project focused on counting dense repeated objects from real operational images. The public version keeps the technical value and metrics while removing internal dataset names, diagrams, client identifiers, and implementation-sensitive details.</p>
         </div>
       </div>
 
       <div class="metrics">
-        <div class="metric"><strong>64%</strong><span>initial YOLO baseline reproduced in the original context</span></div>
-        <div class="metric"><strong>91.8%</strong><span>final image-level accuracy on real validation data</span></div>
-        <div class="metric"><strong>98.9%</strong><span>final precision on evaluated delivery images</span></div>
-        <div class="metric"><strong>98.1%</strong><span>final recall on evaluated delivery images</span></div>
-        <div class="metric"><strong>0.6</strong><span>mean absolute counting error per image</span></div>
-        <div class="metric"><strong>1310+</strong><span>YOLO training runs tracked during experimentation</span></div>
+        <div class="metric"><strong>64%</strong><span>initial reproduced baseline</span></div>
+        <div class="metric"><strong>91.8%</strong><span>final image-level counting accuracy</span></div>
+        <div class="metric"><strong>98.9%</strong><span>precision on evaluated images</span></div>
+        <div class="metric"><strong>98.1%</strong><span>recall on evaluated images</span></div>
+        <div class="metric"><strong>0.6</strong><span>mean absolute error per image</span></div>
+        <div class="metric"><strong>230</strong><span>high-quality curated training images beat a larger noisy set</span></div>
       </div>
 
-      <div class="image-grid">
-        <figure class="figure">
-          <img src="assets/pfe/pipe-ai-pipeline.png" alt="Industrial pipe counting AI pipeline">
-          <figcaption class="caption">Pipeline from client images to model inference, correction loop, Hydra dataset iteration, training, validation, and deployment.</figcaption>
-        </figure>
-        <figure class="figure">
-          <img src="assets/pfe/pipe-progress.png" alt="Pipe counting performance progression">
-          <figcaption class="caption">Performance progressed from the reproduced baseline to a deployable model through data, architecture, and evaluation iterations.</figcaption>
-        </figure>
-      </div>
-
-      <div class="timeline">
-        <div class="step">
-          <strong>1. Baseline and data audit</strong>
-          <p>Reproduced the initial YOLO11M model around 64%, analyzed label quality, counted failure modes, and separated simple from difficult scenes.</p>
+      <div class="flow-list">
+        <div class="flow-item">
+          <strong>Baseline reproduction</strong>
+          <p>Rebuilt the initial detector, verified the evaluation protocol, and established a trusted starting point before claiming improvement.</p>
         </div>
-        <div class="step">
-          <strong>2. Dataset versions</strong>
-          <p>Built and corrected Appipes V5, improved labels, tested image sizes such as 640 and 1280, and evaluated impact on real counting metrics.</p>
+        <div class="flow-item">
+          <strong>Dataset engineering</strong>
+          <p>Audited labels, corrected inconsistent annotations, selected difficult examples, and focused on quality instead of raw dataset size.</p>
         </div>
-        <div class="step">
-          <strong>3. Model comparison</strong>
-          <p>Benchmarked YOLOv8, YOLOv9, YOLOv10, YOLOv11, YOLOv12, and YOLO26 variants. YOLO11 was strongest overall; YOLO26 helped on very complex scenes.</p>
+        <div class="flow-item">
+          <strong>Model experimentation</strong>
+          <p>Ran large-scale training, validation, image-size, hyperparameter, and failure-case experiments while keeping deployment constraints in mind.</p>
         </div>
-        <div class="step">
-          <strong>4. Advanced strategies</strong>
-          <p>Tested controlled overfitting on difficult samples, multi-class group counting, segmentation, NMS behavior, hybrid models, and classifier-based orchestration.</p>
+        <div class="flow-item">
+          <strong>Advanced prototypes</strong>
+          <p>Explored segmentation, dense-object strategies, controlled difficult-case training, model combination, and high-level routing ideas without exposing internal logic.</p>
         </div>
-        <div class="step">
-          <strong>5. Final data-centric model</strong>
-          <p>A smaller but cleaner dataset of 230 manually curated training images outperformed larger heterogeneous datasets and led to the final YOLO11M choice.</p>
+        <div class="flow-item">
+          <strong>Online testing backend</strong>
+          <p>Built a backend environment to test models through realistic inference flows instead of relying only on local notebooks.</p>
         </div>
-        <div class="step">
-          <strong>6. Online testing and deployment</strong>
-          <p>Built a backend environment for online model testing, validated on real March/April delivery images, and deployed the final model in the client workflow.</p>
+        <div class="flow-item">
+          <strong>Deployment-ready result</strong>
+          <p>Selected a final model based on accuracy, stability, speed, memory constraints, and maintainability in an operational workflow.</p>
         </div>
-      </div>
-
-      <div class="two-col">
-        <figure class="figure">
-          <img src="assets/pfe/yolo-comparison.png" alt="YOLO family comparison">
-          <figcaption class="caption">Model-family comparison: YOLO11 was selected for its performance and deployment balance.</figcaption>
-        </figure>
-        <figure class="figure">
-          <img src="assets/pfe/data-centric-230-vs-1100.png" alt="Data-centric comparison between 230 and 1100 images">
-          <figcaption class="caption">A focused, high-quality dataset beat a larger noisy dataset. This became the decisive direction.</figcaption>
-        </figure>
       </div>
     </section>
 
-    <section id="hydra">
+    <section id="data-platform">
       <div class="section-head">
         <div>
-          <h2>Hydra: Annotation and Dataset Engineering</h2>
-          <p class="lead">Hydra was the platform side of the PFE: an internal annotation and dataset iteration tool built to support real computer vision workflows. My contribution covered the full frontend and part of the backend.</p>
+          <h2>Internal Annotation and Dataset Platform</h2>
+          <p class="lead">Alongside the model work, I built a platform-oriented workflow for annotation, correction, filtering, export, and dataset iteration. The public version describes the architecture and role without using the internal product name.</p>
         </div>
       </div>
 
       <div class="grid">
         <article class="card">
-          <h3>Workflow features</h3>
+          <h3>What it enabled</h3>
           <ul>
-            <li>Image import with or without YOLO/COCO labels.</li>
-            <li>Manual annotation and model-assisted semi-annotation.</li>
-            <li>Prediction-to-annotation conversion for correction.</li>
-            <li>Filtering by tags, client, date, object, and status.</li>
-            <li>Export and dataset preparation for training.</li>
+            <li>Image import with or without labels.</li>
+            <li>Manual annotation and assisted correction.</li>
+            <li>Conversion of predictions into editable annotations.</li>
+            <li>Filtering and dataset preparation for training.</li>
+            <li>Export into standard computer vision formats.</li>
           </ul>
         </article>
         <article class="card">
           <h3>Architecture</h3>
-          <p>React frontend, Go backend, typed gRPC communication through hydra_grpc, Redis metadata, and S3-compatible object storage for images.</p>
-          <div class="pillrow"><span class="pill">React</span><span class="pill">Go</span><span class="pill">gRPC</span><span class="pill">Redis</span><span class="pill">S3</span></div>
+          <p>Frontend annotation interface, backend services, typed RPC communication, metadata storage, object storage, and training/export workflows.</p>
+          <div class="tag-row"><span class="tag">React</span><span class="tag">Go</span><span class="tag">gRPC</span><span class="tag">Redis</span><span class="tag">S3</span></div>
         </article>
         <article class="card">
           <h3>Why it mattered</h3>
-          <p>The pipe-counting performance gains depended heavily on faster dataset correction and iteration. Hydra connected annotation work directly to training and validation.</p>
-          <div class="pillrow"><span class="pill green">Data loop</span><span class="pill green">Quality control</span></div>
+          <p>The strongest model improvement came from faster correction loops, better label quality, and a more controlled path from operational data to training data.</p>
+          <div class="tag-row"><span class="tag green">Data-centric AI</span><span class="tag green">Human-in-the-loop</span></div>
         </article>
-      </div>
-
-      <div class="two-col">
-        <figure class="figure">
-          <img src="assets/pfe/hydra-pipeline.png" alt="Hydra data pipeline">
-          <figcaption class="caption">Hydra data flow from import to correction, export, training, and validation.</figcaption>
-        </figure>
-        <figure class="figure">
-          <img src="assets/pfe/hydra-architecture.png" alt="Hydra architecture">
-          <figcaption class="caption">Current Hydra architecture used to support annotation and dataset workflows.</figcaption>
-        </figure>
       </div>
     </section>
 
     <section id="projects">
       <h2>Other Project Families</h2>
-      <p class="lead">The portfolio is broader than one PFE. These projects show work across industrial vision, retail recognition, video analytics, anomaly detection, deployment, and research-oriented ideas.</p>
+      <p class="lead">These projects show the range of my work without exposing private data, model weights, production code, internal names, or client material.</p>
       <div class="project-list">
-        <div class="project">Fine-grained retail recognition <span>500 product/SKU classes, YOLO crops, DINOv2/DINOv3, FAISS, adapters, top-k evaluation, 20k+ annotations.</span></div>
-        <div class="project">FastAPI retail backend <span>Online prediction APIs, batch inference, JSON output, annotated images, ZIP exports, CORS, GPU deployment.</span></div>
-        <div class="project">Product clustering <span>Automatic grouping from crops using embeddings, FAISS similarity search, and strict threshold tuning.</span></div>
+        <div class="project">Fine-grained retail recognition <span>500 product/SKU classes, detection crops, embeddings, retrieval, adapters, top-k evaluation, 20k+ annotations.</span></div>
+        <div class="project">FastAPI recognition backend <span>Online prediction APIs, batch inference, JSON output, annotated outputs, ZIP exports, CORS, GPU deployment.</span></div>
+        <div class="project">Product clustering <span>Automatic grouping from crops using embeddings, similarity search, and strict threshold tuning.</span></div>
         <div class="project">Reference gallery enrichment <span>Reducing shelf-vs-studio domain shift with multiple references, angles, lighting, and backbone benchmarks.</span></div>
         <div class="project">Video line-crossing counting <span>Virtual line logic, object direction, anti-double-counting, batch progress, ETA, and Excel summaries.</span></div>
-        <div class="project">Long-video processing <span>FFmpeg compression, FPS control, duration preservation, HEVC issues, corrupted-frame handling.</span></div>
-        <div class="project">Open/closed carton detection <span>State transition counting, ROI logic, cooldown alternatives, event timestamps, cadence, and reports.</span></div>
-        <div class="project">Face blurring in videos <span>YOLO face detection, ROI processing, privacy-aware video output, AVI robustness.</span></div>
-        <div class="project">PCB anomaly detection <span>Reference-vs-test alignment, SSIM, difference masks, anomaly crops, tolerance parameters.</span></div>
-        <div class="project">Manual PCB region comparison <span>Human-selected bounding boxes, ordered zone comparison, measurement tools.</span></div>
-        <div class="project">Black/brown spot counting <span>OpenCV thresholds, parameter optimization from filename ground truth, reusable prediction scripts.</span></div>
-        <div class="project">YOLO defect detection <span>Piquages_Brun and Piquages_Noirs, duplicate-box handling, class priority rules, thin overlays.</span></div>
-        <div class="project">YOLO auto-annotation <span>Automatic label generation, previews, bbox/arrow overlays, faster dataset construction.</span></div>
-        <div class="project">Generic segmentation and few-shot counting <span>SAM/SAM2, DINO embeddings, FAISS, FSC-147, and reusable object-counting ideas.</span></div>
-        <div class="project">Cable and line analysis <span>Connection reconstruction, path logic, crossing-line handling, colored overlays.</span></div>
+        <div class="project">Long-video processing <span>Compression, FPS control, duration preservation, corrupted-frame handling, and robust batch processing.</span></div>
+        <div class="project">Open/closed object state detection <span>State transition counting, ROI logic, event timestamps, cadence, and reports.</span></div>
+        <div class="project">Privacy-aware video processing <span>Face detection, ROI processing, blur workflows, and robust video output handling.</span></div>
+        <div class="project">PCB anomaly detection <span>Reference-vs-test alignment, SSIM, difference masks, anomaly crops, and tolerance parameters.</span></div>
+        <div class="project">Manual visual comparison tools <span>Human-selected regions, ordered comparison, output visualizations, and measurement tools.</span></div>
+        <div class="project">Classical defect counting <span>OpenCV thresholds, parameter optimization from expected counts, and reusable prediction scripts.</span></div>
+        <div class="project">YOLO auto-annotation <span>Automatic label generation, previews, overlay variants, and faster dataset construction.</span></div>
+        <div class="project">Generic segmentation and few-shot counting <span>SAM/SAM2, DINO embeddings, similarity search, and reusable object-counting ideas.</span></div>
+        <div class="project">Cable and line analysis <span>Connection reconstruction, path logic, crossing-line handling, and colored overlays.</span></div>
         <div class="project">SSRI road surveillance concept <span>Intelligent road surveillance system for license-plate tracking, average speed estimation, and route-level safety analytics.</span></div>
+        <div class="project">AI agent product ideas <span>Planning automation, project research, cost estimation, roadmap generation, and AI-assisted decision support.</span></div>
       </div>
     </section>
 
     <section id="stack">
       <h2>Technical Stack</h2>
       <div class="grid">
-        <div class="card"><h3>Vision and ML</h3><p>YOLO, DINOv2, DINOv3, ResNet, CLIP exploration, FAISS, kNN, OpenCV, SSIM, SAM/SAM2 ideas, PyTorch, TensorFlow, scikit-learn.</p></div>
-        <div class="card"><h3>Data and evaluation</h3><p>YOLO/COCO formats, annotation QA, semi-annotation, auto-labeling, difficult-sample selection, top-1/top-5, precision, recall, MAE, Optuna, W&B, Excel logs.</p></div>
-        <div class="card"><h3>Backend and deployment</h3><p>FastAPI, Uvicorn, REST APIs, batch inference, GPU environments, AWS/EC2, Cloudflare Tunnel, JSON responses, annotated images, ZIP outputs.</p></div>
+        <div class="card"><h3>Vision and ML</h3><p>YOLO, DINOv2/DINOv3, ResNet, FAISS, kNN, OpenCV, SSIM, SAM/SAM2 ideas, PyTorch, TensorFlow, scikit-learn.</p></div>
+        <div class="card"><h3>Data and evaluation</h3><p>Annotation QA, semi-annotation, auto-labeling, difficult-sample selection, top-1/top-5, precision, recall, MAE, Optuna, experiment logs.</p></div>
+        <div class="card"><h3>Backend and deployment</h3><p>FastAPI, Uvicorn, REST APIs, batch inference, GPU environments, AWS/EC2, secure tunneling, JSON responses, ZIP outputs.</p></div>
         <div class="card"><h3>Software engineering</h3><p>Python, Go, gRPC, Redis, S3-compatible storage, React, TypeScript, JavaScript, HTML/CSS, FFmpeg, Git/GitHub.</p></div>
       </div>
     </section>
 
     <section id="contact">
-      <h2>Confidentiality and Contact</h2>
-      <p class="note">Some work was built in company contexts. I do not publish private datasets, model weights, production code, client images, or sensitive business details. I can discuss anonymized architectures, evaluation protocols, failure cases, deployment constraints, and non-sensitive results in academic or professional interviews.</p>
+      <h2>Confidentiality</h2>
+      <p class="statement">This portfolio is intentionally public-safe. It keeps the scale, technical direction, and measurable outcomes, while removing internal dataset names, company-specific diagrams, proprietary code, private images, model weights, and sensitive implementation details.</p>
     </section>
   </main>
 
   <footer>
     <div class="wrap">Email: kalboussi9@gmail.com | LinkedIn: linkedin.com/in/ala-kalboussi-490163320 | GitHub: github.com/KalboussiAla | Tunisia</div>
   </footer>
+
+  <script>
+    const canvas = document.getElementById("flow-field");
+    const ctx = canvas.getContext("2d");
+    let width = 0;
+    let height = 0;
+    let frame = 0;
+
+    function resize() {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      width = canvas.offsetWidth;
+      height = canvas.offsetHeight;
+      canvas.width = Math.floor(width * ratio);
+      canvas.height = Math.floor(height * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      frame += 0.008;
+
+      for (let layer = 0; layer < 7; layer += 1) {
+        const yBase = height * (0.18 + layer * 0.105);
+        const amplitude = 18 + layer * 4;
+        const speed = frame * (0.8 + layer * 0.08);
+        ctx.beginPath();
+        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = `rgba(160, 230, 238, ${0.20 - layer * 0.015})`;
+
+        for (let x = -30; x <= width + 30; x += 12) {
+          const y =
+            yBase +
+            Math.sin(x * 0.009 + speed) * amplitude +
+            Math.sin(x * 0.021 - speed * 1.4) * (amplitude * 0.38);
+          if (x === -30) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    draw();
+    window.addEventListener("resize", resize);
+  </script>
 </body>
 </html>

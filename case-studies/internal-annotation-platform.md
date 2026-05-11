@@ -1,12 +1,10 @@
-# Case Study - Hydra Annotation Platform
+# Case Study - Internal Annotation Platform
 
 ## Context
 
 Applied computer vision projects depend heavily on dataset quality. Model performance is often limited less by the neural network itself and more by data collection, annotation, correction, and iteration speed.
 
-Hydra is an internal annotation platform built to support computer vision workflows.
-
-In the PFE context, Hydra was directly linked to model improvement for industrial pipe counting: faster annotation, easier correction, cleaner exports, and more reliable dataset iteration.
+This project was an internal annotation and dataset platform built to support computer vision workflows. The public version does not use the internal product name.
 
 ## Problem
 
@@ -25,12 +23,10 @@ The platform used a multi-component architecture:
 
 - React frontend for annotation and review workflows;
 - Go backend;
-- typed gRPC communication through `hydra_grpc`;
+- typed gRPC communication;
 - Redis for metadata, annotations, tags, indexes, bundles, and exports;
 - S3-compatible storage for image objects;
 - support for YOLO/COCO-style data flows.
-
-![Hydra architecture](../assets/pfe/hydra-architecture.png)
 
 ## Value
 
@@ -43,7 +39,7 @@ The platform was designed to reduce the delay between:
 5. updating the dataset;
 6. retraining.
 
-![Hydra pipeline](../assets/pfe/hydra-pipeline.png)
+In the PFE context, this platform supported the data loop behind model improvement: faster correction, cleaner exports, and more reliable dataset iteration.
 
 ## Key Lessons
 
