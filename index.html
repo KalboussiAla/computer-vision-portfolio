@@ -10,9 +10,9 @@
       --muted: #5f6d7a;
       --accent: #0b6374;
       --accent-2: #2f6f56;
-      --line: rgba(145, 170, 178, .34);
+      --line: rgba(145, 170, 178, .36);
       --bg: #eaf1f2;
-      --panel: rgba(255, 255, 255, .74);
+      --panel: rgba(255, 255, 255, .70);
       --soft: #edf7f8;
       --soft-2: #f1f7f3;
       --dark: #071d26;
@@ -29,7 +29,7 @@
       overflow-x: hidden;
       color: var(--ink);
       background:
-        linear-gradient(135deg, rgba(235, 244, 245, .98), rgba(222, 237, 239, .96) 44%, rgba(241, 246, 245, .98) 100%);
+        linear-gradient(135deg, rgba(229, 241, 243, .96), rgba(218, 236, 239, .94) 44%, rgba(237, 245, 243, .96) 100%);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.55;
     }
@@ -40,10 +40,10 @@
       inset: -20%;
       z-index: 0;
       pointer-events: none;
-      opacity: .28;
+      opacity: .34;
       background:
-        radial-gradient(circle at var(--mx) var(--my), rgba(74, 183, 197, .22), transparent 20%),
-        radial-gradient(circle at calc(100% - var(--mx)) calc(100% - var(--my)), rgba(91, 150, 114, .14), transparent 24%);
+        radial-gradient(circle at var(--mx) var(--my), rgba(74, 183, 197, .28), transparent 20%),
+        radial-gradient(circle at calc(100% - var(--mx)) calc(100% - var(--my)), rgba(91, 150, 114, .18), transparent 24%);
       filter: blur(.2px);
     }
 
@@ -68,7 +68,7 @@
       color: white;
       overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(7, 29, 38, .76), rgba(9, 70, 78, .62)),
+        linear-gradient(135deg, rgba(7, 29, 38, .82), rgba(9, 70, 78, .72)),
         repeating-linear-gradient(115deg, rgba(255,255,255,.055) 0 1px, transparent 1px 30px);
       z-index: 1;
     }
@@ -90,7 +90,7 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      opacity: .54;
+      opacity: .76;
       pointer-events: none;
     }
 
@@ -101,8 +101,8 @@
       z-index: -1;
       pointer-events: none;
       background:
-        radial-gradient(circle at var(--mx) var(--my), rgba(138, 232, 240, .18), transparent 22%),
-        radial-gradient(circle at calc(100% - var(--mx)) 70%, rgba(143, 205, 169, .12), transparent 30%);
+        radial-gradient(circle at var(--mx) var(--my), rgba(138, 232, 240, .28), transparent 22%),
+        radial-gradient(circle at calc(100% - var(--mx)) 70%, rgba(143, 205, 169, .18), transparent 30%);
       transition: background .08s linear;
     }
 
@@ -201,7 +201,7 @@
       position: sticky;
       top: 0;
       z-index: 5;
-      background: rgba(250, 253, 253, .78);
+      background: rgba(250, 253, 253, .74);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(10px);
       z-index: 5;
@@ -601,7 +601,7 @@
       .detail-panel,
       .lab-panel,
       .statement {
-        background: rgba(255,255,255,.84);
+        background: rgba(255,255,255,.78);
         backdrop-filter: none;
       }
     }
@@ -867,12 +867,8 @@
     let width = 0;
     let height = 0;
     let frame = 0;
-    let lastFrameTime = 0;
     let rafId = 0;
-    const isSmallScreen = window.matchMedia("(max-width: 620px)").matches;
-    const targetFrameMs = isSmallScreen ? 42 : 33;
     const pointer = { x: 0.55, y: 0.42 };
-    const pointerTarget = { x: 0.55, y: 0.42 };
 
     const labContent = {
       data: {
@@ -1054,7 +1050,7 @@
     };
 
     function resizeCanvas() {
-      const ratio = Math.min(window.devicePixelRatio || 1, isSmallScreen ? 1 : 1.25);
+      const ratio = Math.min(window.devicePixelRatio || 1, 1.75);
       width = canvas.offsetWidth;
       height = canvas.offsetHeight;
       canvas.width = Math.floor(width * ratio);
@@ -1062,18 +1058,11 @@
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
 
-    function drawCanvas(time = 0) {
-      rafId = requestAnimationFrame(drawCanvas);
-      if (time - lastFrameTime < targetFrameMs) return;
-      lastFrameTime = time;
-
-      pointer.x += (pointerTarget.x - pointer.x) * 0.12;
-      pointer.y += (pointerTarget.y - pointer.y) * 0.12;
-
+    function drawCanvas() {
       ctx.clearRect(0, 0, width, height);
-      frame += isSmallScreen ? 0.010 : 0.012;
-      const influenceX = (pointer.x - 0.5) * 72;
-      const influenceY = (pointer.y - 0.5) * 54;
+      frame += 0.008;
+      const influenceX = (pointer.x - 0.5) * 90;
+      const influenceY = (pointer.y - 0.5) * 68;
 
       const gradient = ctx.createRadialGradient(
         pointer.x * width,
@@ -1083,28 +1072,26 @@
         pointer.y * height,
         Math.max(width, height) * 0.42
       );
-      gradient.addColorStop(0, "rgba(149, 238, 246, .16)");
-      gradient.addColorStop(0.45, "rgba(77, 171, 184, .06)");
+      gradient.addColorStop(0, "rgba(149, 238, 246, .20)");
+      gradient.addColorStop(0.45, "rgba(77, 171, 184, .08)");
       gradient.addColorStop(1, "rgba(77, 171, 184, 0)");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
-      const layers = isSmallScreen ? 4 : 6;
-      const step = isSmallScreen ? 28 : 22;
-      for (let layer = 0; layer < layers; layer += 1) {
-        const yBase = height * (0.16 + layer * (0.78 / Math.max(layers - 1, 1)));
-        const amplitude = 15 + layer * 4.4;
+      for (let layer = 0; layer < 8; layer += 1) {
+        const yBase = height * (0.14 + layer * 0.102);
+        const amplitude = 17 + layer * 5.2;
         const speed = frame * (0.8 + layer * 0.08);
         ctx.beginPath();
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = `rgba(45, 130, 145, ${0.18 - layer * 0.018})`;
+        ctx.lineWidth = 1.25;
+        ctx.strokeStyle = `rgba(25, 112, 126, ${0.24 - layer * 0.016})`;
 
-        for (let x = -30; x <= width + 30; x += step) {
+        for (let x = -30; x <= width + 30; x += 12) {
           const y =
             yBase +
             Math.sin(x * 0.009 + speed + layer) * amplitude +
             Math.sin(x * 0.021 - speed * 1.4) * (amplitude * 0.38) +
-            Math.sin((x + influenceX) * 0.014 + speed) * (8 + pointer.y * 14) +
+            Math.sin((x + influenceX) * 0.014 + speed) * (10 + pointer.y * 18) +
             influenceY * (layer / 8);
           if (x === -30) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
@@ -1112,17 +1099,18 @@
         ctx.stroke();
       }
 
-      const dots = isSmallScreen ? 5 : 9;
-      for (let i = 0; i < dots; i += 1) {
+      for (let i = 0; i < 18; i += 1) {
         const angle = frame * 1.7 + i * 0.88;
         const radius = 58 + (i % 6) * 28;
         const x = pointer.x * width + Math.cos(angle) * radius;
         const y = pointer.y * height + Math.sin(angle * 0.8) * radius * 0.56;
         ctx.beginPath();
-        ctx.arc(x, y, 1.2 + (i % 3) * 0.45, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(45, 130, 145, .20)";
+        ctx.arc(x, y, 1.5 + (i % 3) * 0.6, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(32, 126, 140, .26)";
         ctx.fill();
       }
+
+      rafId = requestAnimationFrame(drawCanvas);
     }
 
     function renderLab(tab) {
@@ -1158,23 +1146,22 @@
     }
 
     resizeCanvas();
-    rafId = requestAnimationFrame(drawCanvas);
+    drawCanvas();
     renderLab("data");
     renderResearch("brain");
 
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("pointermove", (event) => {
-      pointerTarget.x = event.clientX / Math.max(window.innerWidth, 1);
-      pointerTarget.y = event.clientY / Math.max(window.innerHeight, 1);
-      document.documentElement.style.setProperty("--mx", `${Math.round(pointerTarget.x * 100)}%`);
-      document.documentElement.style.setProperty("--my", `${Math.round(pointerTarget.y * 100)}%`);
+      pointer.x = event.clientX / Math.max(window.innerWidth, 1);
+      pointer.y = event.clientY / Math.max(window.innerHeight, 1);
+      document.documentElement.style.setProperty("--mx", `${Math.round(pointer.x * 100)}%`);
+      document.documentElement.style.setProperty("--my", `${Math.round(pointer.y * 100)}%`);
     });
 
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
         cancelAnimationFrame(rafId);
       } else {
-        lastFrameTime = 0;
         rafId = requestAnimationFrame(drawCanvas);
       }
     });
