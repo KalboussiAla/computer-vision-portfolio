@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalboussi Ala - Computer Vision Portfolio</title>
+  <style>
+    :root {
+      --ink: #17212b;
+      --muted: #5a6675;
+      --accent: #0a5f78;
+      --accent-2: #7a4c21;
+      --line: #d8e0e6;
+      --bg: #f7f8fa;
+      --panel: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+    header {
+      background:
+        linear-gradient(rgba(8, 34, 45, .76), rgba(8, 34, 45, .76)),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 72px 24px 64px;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; }
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 6vw, 60px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+    .subtitle {
+      max-width: 760px;
+      margin: 16px 0 0;
+      font-size: 18px;
+      color: #e8f4f6;
+    }
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    nav .wrap {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 12px 24px;
+    }
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    main { padding: 34px 24px 56px; }
+    section { margin: 0 auto 34px; max-width: 1040px; }
+    h2 {
+      font-size: 25px;
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    .lead { color: var(--muted); max-width: 850px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 17px; }
+    .card p { color: var(--muted); margin: 0; font-size: 14px; }
+    .pillrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .pill {
+      background: #eef6f8;
+      color: var(--accent);
+      border: 1px solid #cce1e7;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .note {
+      border-left: 4px solid var(--accent-2);
+      background: #fff8f0;
+      padding: 14px 16px;
+      color: #473323;
+      border-radius: 6px;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 22px 24px;
+      color: var(--muted);
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Kalboussi Ala</h1>
+      <p class="subtitle">Computer Vision & Applied AI student focused on industrial visual intelligence, fine-grained recognition, dataset engineering, and research-driven product innovation.</p>
+    </div>
+  </header>
+  <nav>
+    <div class="wrap">
+      <a href="#focus">Focus</a>
+      <a href="#case-studies">Case Studies</a>
+      <a href="#stack">Stack</a>
+      <a href="#confidentiality">Confidentiality</a>
+    </div>
+  </nav>
+  <main>
+    <section id="focus">
+      <h2>Focus</h2>
+      <p class="lead">My work sits between research and applied systems: detecting objects, counting industrial items, recognizing visually similar products, improving datasets, deploying inference APIs, and turning model outputs into reliable operational decisions.</p>
+      <div class="grid">
+        <div class="card"><h3>Industrial Vision</h3><p>Object detection, counting, inspection, anomaly detection, and robust evaluation.</p></div>
+        <div class="card"><h3>Fine-Grained Recognition</h3><p>Product/SKU recognition, DINO embeddings, FAISS retrieval, kNN, adapters, and top-k analysis.</p></div>
+        <div class="card"><h3>Dataset Engineering</h3><p>Annotation workflows, label correction, semi-annotation, difficult sample selection, and dataset iteration.</p></div>
+      </div>
+    </section>
+
+    <section id="case-studies">
+      <h2>Selected Case Studies</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Industrial Pipe Counting</h3>
+          <p>YOLO-based detection and counting with data-centric improvement, label correction, NMS analysis, and counting-oriented metrics.</p>
+          <div class="pillrow"><span class="pill">YOLO</span><span class="pill">MAE</span><span class="pill">Dataset QA</span></div>
+        </article>
+        <article class="card">
+          <h3>Retail Product Recognition</h3>
+          <p>Fine-grained recognition across approximately 500 product categories using detection, embeddings, retrieval, adapters, and deployment.</p>
+          <div class="pillrow"><span class="pill">DINO</span><span class="pill">FAISS</span><span class="pill">FastAPI</span></div>
+        </article>
+        <article class="card">
+          <h3>Hydra Annotation Platform</h3>
+          <p>Internal annotation and semi-annotation workflows with React, Go/gRPC, Redis, S3, and YOLO/COCO-style data flows.</p>
+          <div class="pillrow"><span class="pill">React</span><span class="pill">Go</span><span class="pill">S3</span></div>
+        </article>
+        <article class="card">
+          <h3>Video Analytics</h3>
+          <p>Line-crossing counting, direction logic, long-video robustness, corrupted frame handling, FFmpeg compression, and Excel reports.</p>
+          <div class="pillrow"><span class="pill">OpenCV</span><span class="pill">FFmpeg</span><span class="pill">Tracking</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="stack">
+      <h2>Technical Stack</h2>
+      <p class="lead">YOLO, DINOv2, DINOv3, ResNet, FAISS, kNN, OpenCV, SSIM, PyTorch, TensorFlow, scikit-learn, Pandas, NumPy, FastAPI, AWS EC2 GPU, Go, gRPC, Redis, S3-compatible storage, React, TypeScript.</p>
+    </section>
+
+    <section id="confidentiality">
+      <h2>Confidentiality</h2>
+      <p class="note">Most applied projects were completed in client-confidential contexts. This portfolio intentionally avoids client names, datasets, private code, model weights, sensitive images, and exact production details. I can discuss anonymized architectures, methodology, evaluation design, and non-sensitive results in interviews.</p>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">Contact: kalboussi9@gmail.com | LinkedIn: linkedin.com/in/ala-kalboussi-490163320 | GitHub: github.com/KalboussiAla | Tunisia</div>
+  </footer>
+</body>
+</html>
