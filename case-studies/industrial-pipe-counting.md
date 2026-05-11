@@ -12,6 +12,7 @@ This public version intentionally removes internal dataset names, diagrams, exac
 - Built and improved dataset versions without exposing internal names publicly.
 - Analyzed label quality, difficult images, easy vs difficult cases, and failure modes.
 - Ran large-scale experiments on training configuration, image size, data quality, and difficult-case handling.
+- Tested edge/contour-oriented preprocessing and alternative annotation strategies.
 - Tested advanced prototypes such as segmentation, model-combination ideas, dense-object strategies, and high-level routing experiments.
 - Built an online/backend testing environment for model evaluation.
 - Selected the final deployment-ready model based on accuracy, stability, speed, memory constraints, and maintainability.
@@ -54,6 +55,8 @@ The project included 1310+ training runs and 10,000+ prediction/validation runs.
 - training configuration;
 - image resolution;
 - annotation correction;
+- edge and contour preprocessing;
+- alternative annotation strategies;
 - difficult-case selection;
 - hyperparameter search;
 - inference behavior;
@@ -71,6 +74,18 @@ Several advanced directions were explored, then filtered based on real deploymen
 - deployment-focused simplification.
 
 Some prototypes produced interesting results but were not selected because they added complexity, reduced maintainability, or increased the risk of unstable behavior.
+
+## Related Industrial Reuse
+
+The same engineering pattern was reused or adapted across other confidential industrial problems:
+
+- inventory-oriented counting for stacked units;
+- model adaptation to related object families;
+- conveyor and moving-line counting;
+- process-state transition detection for energy/time optimization;
+- packaging completion and palletization progress tracking;
+- pre-process anomaly detection before costly or irreversible steps;
+- calibrated visual quality checks for component placement.
 
 ### 5. Online Testing and Deployment Readiness
 

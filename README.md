@@ -25,6 +25,7 @@ Key results and work:
 - tested data-centric improvement, difficult-sample selection, label correction, image-size experiments, segmentation prototypes, model-combination ideas, and high-level routing strategies;
 - built a backend environment for online model testing;
 - selected a deployment-ready model based on accuracy, stability, speed, memory, and maintainability.
+- adapted similar industrial vision patterns to inventory, state-transition, conveyor, and quality-inspection use cases.
 
 Full case study: [case-studies/industrial-pipe-counting.md](case-studies/industrial-pipe-counting.md)
 
@@ -36,8 +37,10 @@ Full case study: [case-studies/industrial-pipe-counting.md](case-studies/industr
 | Fine-grained recognition | Product/SKU classification, retrieval, embeddings, domain shift | Retail product recognition with detection + embeddings + similarity search |
 | Dataset engineering | Annotation, auto-annotation, label correction, dataset iteration | Internal annotation platform, YOLO auto-labeling |
 | Visual inspection | Reference-vs-test comparison, anomaly masks, defect counting | PCB AOI, black/brown spot counting, defect detection |
+| Process optimization | Visual state transitions, event counting, energy/time reduction | Process-state detection, packaging completion tracking |
 | AI systems and deployment | FastAPI, batch inference, GPU deployment, reports | Prediction backends, batch outputs, online model testing |
 | Advanced vision research ideas | Foundation models, segmentation, few-shot counting, clustering | Generic segmentation, product clustering, reference gallery enrichment |
+| Research direction | Efficient AI, neuroscience-inspired learning, context-aware vision, rare-event detection | Vision + compact reasoning modules, climate-aware operations, AI agents |
 
 ## Featured Case Studies
 
@@ -65,6 +68,12 @@ The full project map is in [PROJECT_INDEX.md](PROJECT_INDEX.md). It includes:
 - video counting with virtual lines;
 - long-video processing and output robustness;
 - open/closed state detection;
+- process-state transition detection;
+- packaging completion and palletization tracking;
+- conveyor material counting;
+- calibrated installation quality checks;
+- stacked-unit inventory counting;
+- pre-process manufacturing anomaly detection;
 - face detection and blurring;
 - retail product recognition;
 - adapter and embedding experiments;
@@ -87,6 +96,14 @@ The full project map is in [PROJECT_INDEX.md](PROJECT_INDEX.md). It includes:
 **Backend / Deployment:** FastAPI, Uvicorn, REST APIs, AWS/EC2 GPU deployment, secure tunneling, batch inference, JSON and ZIP outputs
 **Software / Platform:** Python, Go, gRPC, Redis, S3-compatible storage, React, TypeScript, JavaScript, HTML/CSS
 **Dataset Engineering:** YOLO/COCO formats, semi-annotation, auto-annotation, label correction, dataset versioning, difficult-sample selection
+
+## Research Interests
+
+- neuroscience-inspired and energy-efficient AI;
+- context-aware computer vision with compact reasoning or language modules;
+- rare-event, anomaly, road-risk, and disaster detection;
+- AI for reducing energy waste, material waste, delays, and operational cost;
+- vision systems that can explain, review, and improve their own predictions through AI-agent workflows.
 
 ## What This Portfolio Is
 
