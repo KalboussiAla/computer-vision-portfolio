@@ -39,7 +39,7 @@ In real projects, the hard part is rarely "train a model once." The hard part is
 5. How can computer vision detect rare events, anomalies, road risks, disasters, or unsafe behavior with limited examples?
 6. How can active learning reduce annotation cost in industrial object detection?
 7. How can foundation model embeddings improve fine-grained recognition under domain shift?
-8. How can visual inspection systems work with few or no defect examples?
+8. Could segmentation of a few examples, followed by vision-language retrieval, help discover similar examples for dataset expansion?
 9. How can AI agents automate dataset analysis, experiment review, deployment reporting, and decision support?
 10. How can applied AI reduce energy waste, production delays, material loss, and environmental cost?
 

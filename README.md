@@ -39,7 +39,7 @@ Full case study: [case-studies/industrial-pipe-counting.md](case-studies/industr
 | Visual inspection | Reference-vs-test comparison, anomaly masks, defect counting | PCB AOI, black/brown spot counting, defect detection |
 | Process optimization | Visual state transitions, event counting, energy/time reduction | Process-state detection, packaging completion tracking |
 | AI systems and deployment | FastAPI, batch inference, GPU deployment, reports | Prediction backends, batch outputs, online model testing |
-| Advanced vision research ideas | Foundation models, segmentation, few-shot counting, clustering | Generic segmentation, product clustering, reference gallery enrichment |
+| Advanced vision research ideas | Foundation models, segmentation concepts, few-example augmentation ideas, clustering | Segmentation-assisted concepts, product clustering, reference gallery enrichment |
 | Research direction | Efficient AI, neuroscience-inspired learning, context-aware vision, rare-event detection | Vision + compact reasoning modules, climate-aware operations, AI agents |
 
 ## Featured Case Studies
@@ -85,13 +85,13 @@ The full project map is in [PROJECT_INDEX.md](PROJECT_INDEX.md). It includes:
 - black/brown spot counting;
 - defect detection;
 - auto-annotation;
-- generic segmentation and few-shot counting research ideas;
+- segmentation-assisted few-example research ideas;
 - cable/line connection analysis;
 - SSRI, an intelligent road surveillance concept.
 
 ## Technical Stack
 
-**Computer Vision / AI:** YOLO, DINOv2, DINOv3, ResNet, FAISS, kNN, OpenCV, SSIM, OCR, segmentation concepts, few-shot counting concepts
+**Computer Vision / AI:** YOLO, DINOv2, DINOv3, ResNet, FAISS, kNN, OpenCV, SSIM, OCR, segmentation concepts, few-example augmentation ideas
 **ML / Data:** PyTorch, TensorFlow, scikit-learn, NumPy, Pandas, Matplotlib, Seaborn, Optuna, experiment logs
 **Backend / Deployment:** FastAPI, Uvicorn, REST APIs, AWS/EC2 GPU deployment, secure tunneling, batch inference, JSON and ZIP outputs
 **Software / Platform:** Python, Go, gRPC, Redis, S3-compatible storage, React, TypeScript, JavaScript, HTML/CSS

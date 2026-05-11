@@ -116,4 +116,4 @@ The final model was selected based on:
 - Counting-aware post-processing for dense repeated objects.
 - Robustness to occlusion, lighting changes, and acquisition variation.
 - Foundation-model features for difficult-case retrieval and dataset curation.
-- Few-shot counting methods for objects that are costly to annotate.
+- Segmentation-assisted example expansion ideas for objects that are costly to annotate.

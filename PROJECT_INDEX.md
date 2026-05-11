@@ -147,11 +147,11 @@ This index presents the full scope of my applied AI and computer vision work. So
 **Core problem:** Generate first-pass labels and previews from model predictions.
 **Methods:** YOLO inference, label export, preview generation, bbox/arrow overlays, folder batch processing.
 
-## 23. Generic Segmentation and Few-Shot Counting Research
+## 23. Segmentation-Assisted Few-Example Concept
 
 **Domain:** Advanced vision research exploration
-**Core problem:** Move beyond training a detector for every new object type.
-**Methods explored:** SAM/SAM2, DINO embeddings, FAISS, FSC-147, few-shot object counting, generic segmentation and retrieval.
+**Core problem:** Explore how a small number of examples could be expanded without claiming a completed implementation.
+**Methods concept:** Segment example objects, look for recurring visual regions or patterns, use a vision-language model or retrieval workflow to search for similar images, then review results before adding them to a dataset.
 
 ## 24. Cable / Line / Connection Analysis
 

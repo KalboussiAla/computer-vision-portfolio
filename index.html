@@ -10,9 +10,9 @@
       --muted: #5f6d7a;
       --accent: #0b6374;
       --accent-2: #2f6f56;
-      --line: #d9e3e8;
-      --bg: #f7f9fb;
-      --panel: #ffffff;
+      --line: rgba(145, 170, 178, .34);
+      --bg: #eaf1f2;
+      --panel: rgba(255, 255, 255, .74);
       --soft: #edf7f8;
       --soft-2: #f1f7f3;
       --dark: #071d26;
@@ -28,7 +28,8 @@
       margin: 0;
       overflow-x: hidden;
       color: var(--ink);
-      background: linear-gradient(180deg, #f7f9fb 0%, #f4f7f8 48%, #fbfcfd 100%);
+      background:
+        linear-gradient(135deg, rgba(235, 244, 245, .98), rgba(222, 237, 239, .96) 44%, rgba(241, 246, 245, .98) 100%);
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.55;
     }
@@ -39,11 +40,10 @@
       inset: -20%;
       z-index: 0;
       pointer-events: none;
-      opacity: .38;
+      opacity: .28;
       background:
-        radial-gradient(circle at var(--mx) var(--my), rgba(74, 183, 197, .22), transparent 18%),
-        radial-gradient(circle at calc(100% - var(--mx)) calc(100% - var(--my)), rgba(91, 150, 114, .18), transparent 22%),
-        repeating-linear-gradient(115deg, rgba(11,99,116,.035) 0 1px, transparent 1px 48px);
+        radial-gradient(circle at var(--mx) var(--my), rgba(74, 183, 197, .22), transparent 20%),
+        radial-gradient(circle at calc(100% - var(--mx)) calc(100% - var(--my)), rgba(91, 150, 114, .14), transparent 24%);
       filter: blur(.2px);
     }
 
@@ -68,7 +68,7 @@
       color: white;
       overflow: hidden;
       background:
-        linear-gradient(135deg, rgba(7, 29, 38, .98), rgba(9, 70, 78, .92)),
+        linear-gradient(135deg, rgba(7, 29, 38, .76), rgba(9, 70, 78, .62)),
         repeating-linear-gradient(115deg, rgba(255,255,255,.055) 0 1px, transparent 1px 30px);
       z-index: 1;
     }
@@ -78,19 +78,20 @@
       position: absolute;
       inset: 0;
       background:
-        repeating-linear-gradient(90deg, rgba(152, 231, 239, .08) 0 1px, transparent 1px 78px),
-        repeating-linear-gradient(0deg, rgba(152, 231, 239, .055) 0 1px, transparent 1px 78px);
-      animation: gridFlow 20s linear infinite;
+        linear-gradient(180deg, rgba(7, 29, 38, .18), rgba(7, 29, 38, .52)),
+        repeating-linear-gradient(90deg, rgba(152, 231, 239, .055) 0 1px, transparent 1px 86px),
+        repeating-linear-gradient(0deg, rgba(152, 231, 239, .04) 0 1px, transparent 1px 86px);
       z-index: -2;
     }
 
     #flow-field {
-      position: absolute;
+      position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      opacity: .72;
+      z-index: 0;
+      opacity: .54;
+      pointer-events: none;
     }
 
     header::after {
@@ -100,8 +101,8 @@
       z-index: -1;
       pointer-events: none;
       background:
-        radial-gradient(circle at var(--mx) var(--my), rgba(138, 232, 240, .28), transparent 20%),
-        radial-gradient(circle at calc(100% - var(--mx)) 70%, rgba(143, 205, 169, .18), transparent 28%);
+        radial-gradient(circle at var(--mx) var(--my), rgba(138, 232, 240, .18), transparent 22%),
+        radial-gradient(circle at calc(100% - var(--mx)) 70%, rgba(143, 205, 169, .12), transparent 30%);
       transition: background .08s linear;
     }
 
@@ -200,7 +201,7 @@
       position: sticky;
       top: 0;
       z-index: 5;
-      background: rgba(255,255,255,.96);
+      background: rgba(250, 253, 253, .78);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(10px);
       z-index: 5;
@@ -279,7 +280,8 @@
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: 8px;
-      box-shadow: 0 14px 32px rgba(20, 36, 47, .04);
+      box-shadow: 0 14px 32px rgba(20, 36, 47, .05);
+      backdrop-filter: blur(10px);
     }
 
     .card {
@@ -435,7 +437,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       color: var(--accent);
-      background: white;
+      background: rgba(255, 255, 255, .76);
       font-size: 14px;
       font-weight: 700;
       text-align: left;
@@ -525,7 +527,7 @@
     .research-card {
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: white;
+      background: rgba(255, 255, 255, .76);
       text-align: left;
       font-size: 14px;
       font-weight: 700;
@@ -546,7 +548,7 @@
     .detail-panel.empty {
       color: var(--muted);
       background:
-        linear-gradient(135deg, rgba(237,247,248,.95), rgba(241,247,243,.95)),
+        linear-gradient(135deg, rgba(237,247,248,.78), rgba(241,247,243,.78)),
         repeating-linear-gradient(115deg, rgba(11,99,116,.08) 0 1px, transparent 1px 34px);
     }
 
@@ -554,7 +556,7 @@
       padding: 20px;
       color: #20313b;
       background:
-        linear-gradient(135deg, rgba(237,247,248,.92), rgba(241,247,243,.92)),
+        linear-gradient(135deg, rgba(237,247,248,.78), rgba(241,247,243,.78)),
         repeating-linear-gradient(115deg, rgba(11,99,116,.08) 0 1px, transparent 1px 34px);
     }
 
@@ -563,7 +565,7 @@
       z-index: 1;
       padding: 22px 24px;
       color: var(--muted);
-      background: white;
+      background: rgba(255, 255, 255, .78);
       border-top: 1px solid var(--line);
     }
 
@@ -592,12 +594,22 @@
       }
       nav .wrap::-webkit-scrollbar { display: none; }
       nav a { flex: 0 0 auto; }
+      .card,
+      .metric,
+      .flow-item,
+      .project,
+      .detail-panel,
+      .lab-panel,
+      .statement {
+        background: rgba(255,255,255,.84);
+        backdrop-filter: none;
+      }
     }
   </style>
 </head>
 <body>
+  <canvas id="flow-field" aria-hidden="true"></canvas>
   <header>
-    <canvas id="flow-field" aria-hidden="true"></canvas>
     <div class="wrap">
       <p class="eyebrow">Computer Vision | Applied AI | Research-Oriented Engineering</p>
       <h1>Kalboussi Ala</h1>
@@ -775,7 +787,7 @@
         <button class="project" type="button" data-category="platform" data-project="backend">Prediction backend services <span>Online prediction APIs, batch inference, JSON output, annotated outputs, ZIP exports, CORS, and GPU deployment.</span><small>Open details</small></button>
         <button class="project" type="button" data-category="platform" data-project="annotation">Annotation and dataset platform <span>Human-in-the-loop annotation, assisted correction, filtering, export, and dataset iteration.</span><small>Open details</small></button>
         <button class="project" type="button" data-category="industrial" data-project="pcb">PCB anomaly detection <span>Reference-vs-test alignment, SSIM, difference masks, anomaly crops, and tolerance parameters.</span><small>Open details</small></button>
-        <button class="project" type="button" data-category="research" data-project="generic">Generic segmentation and few-shot counting <span>SAM/SAM2, DINO embeddings, similarity search, and reusable counting ideas for new object categories.</span><small>Open details</small></button>
+        <button class="project" type="button" data-category="research" data-project="generic">Segmentation-assisted few-example concept <span>Research idea: segment examples, extract patterns, and use vision-language retrieval to expand examples. Not presented as tested work.</span><small>Open details</small></button>
         <button class="project" type="button" data-category="research" data-project="ssri">SSRI concept <span>Road-safety AI concept using recognition, route-level reasoning, and privacy-aware analytics.</span><small>Open details</small></button>
         <button class="project" type="button" data-category="research" data-project="agents">AI agent product ideas <span>Planning automation, project research, cost estimation, roadmap generation, and AI-assisted decision support.</span><small>Open details</small></button>
       </div>
@@ -816,7 +828,7 @@
         </button>
         <button class="research-card" type="button" data-research="rare">
           Rare-event and anomaly detection
-          <span>Build systems that can detect what is unusual even when examples are limited.</span>
+          <span>Explore anomaly detection when examples are limited, with clear separation between tested work and research ideas.</span>
           <small>Open direction</small>
         </button>
         <button class="research-card" type="button" data-research="agents">
@@ -832,7 +844,7 @@
     <section id="stack">
       <h2>Technical Stack</h2>
       <div class="grid">
-        <div class="card"><h3>Vision and ML</h3><p>YOLO, DINOv2/DINOv3, ResNet, FAISS, kNN, OpenCV, SSIM, SAM/SAM2 ideas, PyTorch, TensorFlow, scikit-learn.</p></div>
+        <div class="card"><h3>Vision and ML</h3><p>YOLO, DINOv2/DINOv3, ResNet, FAISS, kNN, OpenCV, SSIM, segmentation concepts, PyTorch, TensorFlow, scikit-learn.</p></div>
         <div class="card"><h3>Data and evaluation</h3><p>Annotation QA, semi-annotation, auto-labeling, difficult-sample selection, top-1/top-5, precision, recall, MAE, Optuna, experiment logs.</p></div>
         <div class="card"><h3>Backend and deployment</h3><p>FastAPI, Uvicorn, REST APIs, batch inference, GPU environments, AWS/EC2, secure tunneling, JSON responses, ZIP outputs.</p></div>
         <div class="card"><h3>Software engineering</h3><p>Python, Go, gRPC, Redis, S3-compatible storage, React, TypeScript, JavaScript, HTML/CSS, FFmpeg, Git/GitHub.</p></div>
@@ -855,7 +867,12 @@
     let width = 0;
     let height = 0;
     let frame = 0;
+    let lastFrameTime = 0;
+    let rafId = 0;
+    const isSmallScreen = window.matchMedia("(max-width: 620px)").matches;
+    const targetFrameMs = isSmallScreen ? 42 : 33;
     const pointer = { x: 0.55, y: 0.42 };
+    const pointerTarget = { x: 0.55, y: 0.42 };
 
     const labContent = {
       data: {
@@ -934,7 +951,7 @@
       rare: {
         title: "Rare-event and anomaly detection",
         text: "Many important events are rare: defects, accidents, failures, safety risks, and disasters. I want to explore how foundation models, retrieval, synthetic data, and human-in-the-loop systems can make rare-event detection more reliable.",
-        points: ["Few-shot defects", "Anomaly detection", "Event understanding", "Human-in-the-loop review"]
+        points: ["Few-example defects", "Anomaly detection", "Event understanding", "Human-in-the-loop review"]
       },
       agents: {
         title: "Vision plus AI agents",
@@ -1020,9 +1037,9 @@
         points: ["OpenCV", "SSIM", "Alignment", "Anomaly crops"]
       },
       generic: {
-        title: "Generic segmentation and few-shot counting",
-        text: "Research-oriented exploration of reusable vision workflows that reduce the need to train a new detector for every object type.",
-        points: ["SAM/SAM2 ideas", "DINO embeddings", "Few-shot counting", "Similarity search"]
+        title: "Segmentation-assisted few-example concept",
+        text: "Research idea, not a completed implementation: segment the few available examples, extract recurring regions or patterns, then use a vision-language model or retrieval workflow to find visually similar images and expand the examples.",
+        points: ["Concept only", "Segmentation of examples", "Pattern discovery", "Vision-language retrieval"]
       },
       ssri: {
         title: "SSRI concept",
@@ -1037,7 +1054,7 @@
     };
 
     function resizeCanvas() {
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      const ratio = Math.min(window.devicePixelRatio || 1, isSmallScreen ? 1 : 1.25);
       width = canvas.offsetWidth;
       height = canvas.offsetHeight;
       canvas.width = Math.floor(width * ratio);
@@ -1045,11 +1062,18 @@
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
 
-    function drawCanvas() {
+    function drawCanvas(time = 0) {
+      rafId = requestAnimationFrame(drawCanvas);
+      if (time - lastFrameTime < targetFrameMs) return;
+      lastFrameTime = time;
+
+      pointer.x += (pointerTarget.x - pointer.x) * 0.12;
+      pointer.y += (pointerTarget.y - pointer.y) * 0.12;
+
       ctx.clearRect(0, 0, width, height);
-      frame += 0.008;
-      const influenceX = (pointer.x - 0.5) * 90;
-      const influenceY = (pointer.y - 0.5) * 68;
+      frame += isSmallScreen ? 0.010 : 0.012;
+      const influenceX = (pointer.x - 0.5) * 72;
+      const influenceY = (pointer.y - 0.5) * 54;
 
       const gradient = ctx.createRadialGradient(
         pointer.x * width,
@@ -1059,26 +1083,28 @@
         pointer.y * height,
         Math.max(width, height) * 0.42
       );
-      gradient.addColorStop(0, "rgba(149, 238, 246, .20)");
-      gradient.addColorStop(0.45, "rgba(77, 171, 184, .08)");
+      gradient.addColorStop(0, "rgba(149, 238, 246, .16)");
+      gradient.addColorStop(0.45, "rgba(77, 171, 184, .06)");
       gradient.addColorStop(1, "rgba(77, 171, 184, 0)");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
-      for (let layer = 0; layer < 8; layer += 1) {
-        const yBase = height * (0.14 + layer * 0.102);
-        const amplitude = 17 + layer * 5.2;
+      const layers = isSmallScreen ? 4 : 6;
+      const step = isSmallScreen ? 28 : 22;
+      for (let layer = 0; layer < layers; layer += 1) {
+        const yBase = height * (0.16 + layer * (0.78 / Math.max(layers - 1, 1)));
+        const amplitude = 15 + layer * 4.4;
         const speed = frame * (0.8 + layer * 0.08);
         ctx.beginPath();
-        ctx.lineWidth = 1.25;
-        ctx.strokeStyle = `rgba(160, 230, 238, ${0.25 - layer * 0.016})`;
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = `rgba(45, 130, 145, ${0.18 - layer * 0.018})`;
 
-        for (let x = -30; x <= width + 30; x += 12) {
+        for (let x = -30; x <= width + 30; x += step) {
           const y =
             yBase +
             Math.sin(x * 0.009 + speed + layer) * amplitude +
             Math.sin(x * 0.021 - speed * 1.4) * (amplitude * 0.38) +
-            Math.sin((x + influenceX) * 0.014 + speed) * (10 + pointer.y * 18) +
+            Math.sin((x + influenceX) * 0.014 + speed) * (8 + pointer.y * 14) +
             influenceY * (layer / 8);
           if (x === -30) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
@@ -1086,18 +1112,17 @@
         ctx.stroke();
       }
 
-      for (let i = 0; i < 18; i += 1) {
+      const dots = isSmallScreen ? 5 : 9;
+      for (let i = 0; i < dots; i += 1) {
         const angle = frame * 1.7 + i * 0.88;
         const radius = 58 + (i % 6) * 28;
         const x = pointer.x * width + Math.cos(angle) * radius;
         const y = pointer.y * height + Math.sin(angle * 0.8) * radius * 0.56;
         ctx.beginPath();
-        ctx.arc(x, y, 1.5 + (i % 3) * 0.6, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(190, 246, 250, .28)";
+        ctx.arc(x, y, 1.2 + (i % 3) * 0.45, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(45, 130, 145, .20)";
         ctx.fill();
       }
-
-      requestAnimationFrame(drawCanvas);
     }
 
     function renderLab(tab) {
@@ -1133,16 +1158,25 @@
     }
 
     resizeCanvas();
-    drawCanvas();
+    rafId = requestAnimationFrame(drawCanvas);
     renderLab("data");
     renderResearch("brain");
 
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("pointermove", (event) => {
-      pointer.x = event.clientX / Math.max(window.innerWidth, 1);
-      pointer.y = event.clientY / Math.max(window.innerHeight, 1);
-      document.documentElement.style.setProperty("--mx", `${Math.round(pointer.x * 100)}%`);
-      document.documentElement.style.setProperty("--my", `${Math.round(pointer.y * 100)}%`);
+      pointerTarget.x = event.clientX / Math.max(window.innerWidth, 1);
+      pointerTarget.y = event.clientY / Math.max(window.innerHeight, 1);
+      document.documentElement.style.setProperty("--mx", `${Math.round(pointerTarget.x * 100)}%`);
+      document.documentElement.style.setProperty("--my", `${Math.round(pointerTarget.y * 100)}%`);
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafId);
+      } else {
+        lastFrameTime = 0;
+        rafId = requestAnimationFrame(drawCanvas);
+      }
     });
 
     document.querySelectorAll(".tab-button").forEach((button) => {
