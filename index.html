@@ -7,12 +7,14 @@
   <style>
     :root {
       --ink: #17212b;
-      --muted: #5a6675;
+      --muted: #5b6674;
       --accent: #0a5f78;
-      --accent-2: #7a4c21;
-      --line: #d8e0e6;
-      --bg: #f7f8fa;
+      --warm: #8a5a28;
+      --line: #d7e0e7;
+      --bg: #f6f8fa;
       --panel: #ffffff;
+      --soft: #eef6f8;
+      --warm-soft: #fff5ea;
     }
     * { box-sizing: border-box; }
     body {
@@ -22,27 +24,53 @@
       font-family: Arial, Helvetica, sans-serif;
       line-height: 1.55;
     }
+    a { color: var(--accent); }
     header {
       background:
-        linear-gradient(rgba(8, 34, 45, .76), rgba(8, 34, 45, .76)),
+        linear-gradient(rgba(8, 31, 42, .78), rgba(8, 31, 42, .78)),
         url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1800&q=80");
       background-size: cover;
       background-position: center;
       color: white;
-      padding: 72px 24px 64px;
+      padding: 72px 24px 58px;
     }
-    .wrap { max-width: 1040px; margin: 0 auto; }
+    .wrap { max-width: 1120px; margin: 0 auto; }
     h1 {
       margin: 0;
-      font-size: clamp(34px, 6vw, 60px);
-      line-height: 1.02;
+      font-size: clamp(34px, 6vw, 62px);
+      line-height: 1.04;
       letter-spacing: 0;
     }
     .subtitle {
-      max-width: 760px;
+      max-width: 820px;
       margin: 16px 0 0;
       font-size: 18px;
       color: #e8f4f6;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid rgba(255,255,255,.42);
+      color: white;
+      background: rgba(255,255,255,.12);
+    }
+    .button.primary {
+      background: white;
+      color: var(--accent);
+      border-color: white;
     }
     nav {
       background: white;
@@ -63,17 +91,26 @@
       font-weight: 700;
       font-size: 14px;
     }
-    main { padding: 34px 24px 56px; }
-    section { margin: 0 auto 34px; max-width: 1040px; }
+    main { padding: 34px 24px 58px; }
+    section { margin: 0 auto 38px; max-width: 1120px; }
     h2 {
-      font-size: 25px;
+      font-size: 26px;
       margin: 0 0 12px;
       letter-spacing: 0;
     }
-    .lead { color: var(--muted); max-width: 850px; }
+    h3 { margin: 0 0 8px; font-size: 18px; }
+    .lead { color: var(--muted); max-width: 900px; }
+    .map {
+      width: 100%;
+      max-width: 1120px;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+    }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 14px;
       margin-top: 18px;
     }
@@ -83,11 +120,11 @@
       border-radius: 8px;
       padding: 18px;
     }
-    .card h3 { margin: 0 0 8px; font-size: 17px; }
     .card p { color: var(--muted); margin: 0; font-size: 14px; }
-    .pillrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .card strong { color: var(--ink); }
+    .pillrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
     .pill {
-      background: #eef6f8;
+      background: var(--soft);
       color: var(--accent);
       border: 1px solid #cce1e7;
       border-radius: 999px;
@@ -95,9 +132,33 @@
       font-size: 12px;
       font-weight: 700;
     }
+    .pill.warm {
+      color: var(--warm);
+      background: var(--warm-soft);
+      border-color: #ead0b5;
+    }
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .project {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+    .project span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
     .note {
-      border-left: 4px solid var(--accent-2);
-      background: #fff8f0;
+      border-left: 4px solid var(--warm);
+      background: var(--warm-soft);
       padding: 14px 16px;
       color: #473323;
       border-radius: 6px;
@@ -114,66 +175,104 @@
   <header>
     <div class="wrap">
       <h1>Kalboussi Ala</h1>
-      <p class="subtitle">Computer Vision & Applied AI student focused on industrial visual intelligence, fine-grained recognition, dataset engineering, and research-driven product innovation.</p>
+      <p class="subtitle">Computer Vision & Applied AI portfolio: industrial counting, fine-grained product recognition, dataset engineering, visual inspection, video analytics, AI deployment, and research-driven product ideas.</p>
+      <div class="actions">
+        <a class="button primary" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/PROJECT_INDEX.md">Project Index</a>
+        <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/RESEARCH_DIRECTION.md">Research Direction</a>
+        <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/case-studies/fine-grained-retail-recognition.md">Retail Case Study</a>
+        <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/case-studies/industrial-pipe-counting.md">Pipe Counting</a>
+      </div>
     </div>
   </header>
+
   <nav>
     <div class="wrap">
-      <a href="#focus">Focus</a>
-      <a href="#case-studies">Case Studies</a>
+      <a href="#overview">Overview</a>
+      <a href="#featured">Featured</a>
+      <a href="#projects">Projects</a>
       <a href="#stack">Stack</a>
-      <a href="#confidentiality">Confidentiality</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
+
   <main>
-    <section id="focus">
-      <h2>Focus</h2>
-      <p class="lead">My work sits between research and applied systems: detecting objects, counting industrial items, recognizing visually similar products, improving datasets, deploying inference APIs, and turning model outputs into reliable operational decisions.</p>
-      <div class="grid">
-        <div class="card"><h3>Industrial Vision</h3><p>Object detection, counting, inspection, anomaly detection, and robust evaluation.</p></div>
-        <div class="card"><h3>Fine-Grained Recognition</h3><p>Product/SKU recognition, DINO embeddings, FAISS retrieval, kNN, adapters, and top-k analysis.</p></div>
-        <div class="card"><h3>Dataset Engineering</h3><p>Annotation workflows, label correction, semi-annotation, difficult sample selection, and dataset iteration.</p></div>
-      </div>
+    <section id="overview">
+      <h2>Portfolio Overview</h2>
+      <p class="lead">My work is focused on building complete AI systems, not only training isolated models. The recurring pattern is: collect or annotate data, train or adapt models, evaluate the real operational metric, build tools around the model, and deploy usable inference workflows.</p>
+      <img class="map" src="assets/portfolio-map.svg" alt="Portfolio map showing project families">
     </section>
 
-    <section id="case-studies">
-      <h2>Selected Case Studies</h2>
+    <section id="featured">
+      <h2>Featured Case Studies</h2>
       <div class="grid">
         <article class="card">
           <h3>Industrial Pipe Counting</h3>
-          <p>YOLO-based detection and counting with data-centric improvement, label correction, NMS analysis, and counting-oriented metrics.</p>
-          <div class="pillrow"><span class="pill">YOLO</span><span class="pill">MAE</span><span class="pill">Dataset QA</span></div>
+          <p>YOLO-based detection and counting for industrial tubes, with baseline reproduction, dataset correction, difficult-case analysis, and counting-oriented evaluation.</p>
+          <div class="pillrow"><span class="pill">YOLO</span><span class="pill">MAE</span><span class="pill">Data-centric</span></div>
         </article>
         <article class="card">
-          <h3>Retail Product Recognition</h3>
-          <p>Fine-grained recognition across approximately 500 product categories using detection, embeddings, retrieval, adapters, and deployment.</p>
+          <h3>Fine-Grained Retail Recognition</h3>
+          <p>Recognition across approximately 500 visually similar products using YOLO, DINOv2/DINOv3, FAISS, kNN, adapters, reference galleries, and FastAPI deployment.</p>
           <div class="pillrow"><span class="pill">DINO</span><span class="pill">FAISS</span><span class="pill">FastAPI</span></div>
         </article>
         <article class="card">
           <h3>Hydra Annotation Platform</h3>
-          <p>Internal annotation and semi-annotation workflows with React, Go/gRPC, Redis, S3, and YOLO/COCO-style data flows.</p>
-          <div class="pillrow"><span class="pill">React</span><span class="pill">Go</span><span class="pill">S3</span></div>
+          <p>Annotation and semi-annotation platform for faster dataset iteration. Personal contribution: full frontend and part of backend.</p>
+          <div class="pillrow"><span class="pill">React</span><span class="pill">Go/gRPC</span><span class="pill">S3</span></div>
         </article>
         <article class="card">
-          <h3>Video Analytics</h3>
-          <p>Line-crossing counting, direction logic, long-video robustness, corrupted frame handling, FFmpeg compression, and Excel reports.</p>
-          <div class="pillrow"><span class="pill">OpenCV</span><span class="pill">FFmpeg</span><span class="pill">Tracking</span></div>
+          <h3>PCB / AOI Anomaly Detection</h3>
+          <p>Reference-vs-test inspection using OpenCV, alignment, SSIM, difference masks, anomaly crops, and human-in-the-loop region comparison.</p>
+          <div class="pillrow"><span class="pill">OpenCV</span><span class="pill">SSIM</span><span class="pill">AOI</span></div>
         </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Project Families</h2>
+      <p class="lead">The full list is detailed in <a href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/PROJECT_INDEX.md">PROJECT_INDEX.md</a>. This page gives the visible map.</p>
+      <div class="project-list">
+        <div class="project">Industrial pipe counting <span>YOLO, datasets, counting metrics</span></div>
+        <div class="project">Hydra annotation platform <span>React, Go, gRPC, Redis, S3</span></div>
+        <div class="project">Video line-crossing counting <span>Tracking logic, direction, Excel</span></div>
+        <div class="project">Long-video FFmpeg processing <span>FPS, duration, corrupted frames</span></div>
+        <div class="project">Open/closed carton detection <span>State transitions, ROI, events</span></div>
+        <div class="project">Face detection and blurring <span>Privacy-aware video processing</span></div>
+        <div class="project">Retail product recognition <span>500 products, 20k+ annotations</span></div>
+        <div class="project">DINO adapters and FAISS retrieval <span>Top-k, embeddings, Optuna</span></div>
+        <div class="project">FastAPI prediction backend <span>Batch APIs, JSON, ZIP outputs</span></div>
+        <div class="project">Automatic product clustering <span>Embeddings, FAISS, grouping</span></div>
+        <div class="project">Reference gallery enrichment <span>Domain shift, shelf vs studio</span></div>
+        <div class="project">PCB anomaly detection <span>SSIM, alignment, masks</span></div>
+        <div class="project">Manual PCB comparison tools <span>Bounding boxes, measurements</span></div>
+        <div class="project">Black/brown spot counting <span>OpenCV thresholds, optimization</span></div>
+        <div class="project">YOLO defect detection <span>Piquages_Brun, Piquages_Noirs</span></div>
+        <div class="project">YOLO auto-annotation <span>Labels, previews, dataset speed</span></div>
+        <div class="project">Generic segmentation / few-shot counting <span>SAM, DINO, FSC-147 ideas</span></div>
+        <div class="project">Cable and line connection analysis <span>Paths, crossings, visual logic</span></div>
+        <div class="project">SSRI road surveillance concept <span>Road safety, privacy-aware analytics</span></div>
+        <div class="project">Planum.AI <span>AI agents for project planning</span></div>
       </div>
     </section>
 
     <section id="stack">
       <h2>Technical Stack</h2>
-      <p class="lead">YOLO, DINOv2, DINOv3, ResNet, FAISS, kNN, OpenCV, SSIM, PyTorch, TensorFlow, scikit-learn, Pandas, NumPy, FastAPI, AWS EC2 GPU, Go, gRPC, Redis, S3-compatible storage, React, TypeScript.</p>
+      <div class="grid">
+        <div class="card"><h3>Vision / ML</h3><p>YOLO, DINOv2, DINOv3, ResNet, FAISS, kNN, OpenCV, SSIM, OCR, PyTorch, TensorFlow, scikit-learn.</p></div>
+        <div class="card"><h3>Data / Experiments</h3><p>Annotation QA, YOLO/COCO formats, auto-labeling, difficult-sample selection, Pandas, NumPy, Optuna, Excel logs.</p></div>
+        <div class="card"><h3>Deployment</h3><p>FastAPI, Uvicorn, REST APIs, batch inference, GPU deployment, AWS/EC2, Cloudflare Tunnel, JSON and ZIP outputs.</p></div>
+        <div class="card"><h3>Software</h3><p>Python, Go, gRPC, Redis, S3-compatible storage, React, TypeScript, JavaScript, HTML/CSS.</p></div>
+      </div>
     </section>
 
-    <section id="confidentiality">
-      <h2>Confidentiality</h2>
-      <p class="note">Most applied projects were completed in client-confidential contexts. This portfolio intentionally avoids client names, datasets, private code, model weights, sensitive images, and exact production details. I can discuss anonymized architectures, methodology, evaluation design, and non-sensitive results in interviews.</p>
+    <section id="contact">
+      <h2>Confidentiality and Contact</h2>
+      <p class="note">Some projects were built in company contexts. I do not publish private data, client images, model weights, or production code. I can explain anonymized architectures, evaluation protocols, failure cases, and non-sensitive results during academic or professional interviews.</p>
     </section>
   </main>
+
   <footer>
-    <div class="wrap">Contact: kalboussi9@gmail.com | LinkedIn: linkedin.com/in/ala-kalboussi-490163320 | GitHub: github.com/KalboussiAla | Tunisia</div>
+    <div class="wrap">Email: kalboussi9@gmail.com | LinkedIn: linkedin.com/in/ala-kalboussi-490163320 | GitHub: github.com/KalboussiAla | Tunisia</div>
   </footer>
 </body>
 </html>
