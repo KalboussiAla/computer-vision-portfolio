@@ -1,6 +1,6 @@
 # Kalboussi Ala - Computer Vision & Applied AI Portfolio
 
-I build applied AI systems around computer vision, dataset engineering, industrial automation, visual recognition, and deployable inference workflows.
+I build applied AI systems around computer vision, dataset engineering, industrial automation, visual recognition, and deployable inference workflows. My main strength is the full engineering loop: data, annotation, model experiments, evaluation, backend testing, and deployment.
 
 This portfolio is a technical overview of my work. Some projects were built in company contexts, so I do not publish private datasets, model weights, production code, client images, or business-sensitive details. Instead, I present the engineering problems, system design, methods, evaluation logic, and lessons learned.
 
@@ -15,6 +15,25 @@ This portfolio is a technical overview of my work. Some projects were built in c
 ## Portfolio Map
 
 ![Portfolio map](assets/portfolio-map.svg)
+
+## Main Proof Point - PFE Industrial Pipe Counting
+
+My PFE focused on automatic counting of industrial tubes/pipes from real delivery images.
+
+Key results and work:
+
+- reproduced the initial YOLO baseline around **64%** image-level accuracy;
+- improved the final model to **91.8%** image-level accuracy on real validation images;
+- reached **98.9% precision**, **98.1% recall**, and **0.6 MAE** per image;
+- compared YOLOv8, YOLOv9, YOLOv10, YOLOv11, YOLOv12, and YOLO26;
+- tested hybrid models, segmentation, multi-class group counting, controlled overfitting, and classifier-based orchestration;
+- ran **1310+ YOLO training runs** and **10,000+ prediction/validation runs**;
+- built a backend environment for online model testing;
+- deployed the final model in the client workflow.
+
+![Pipe counting AI pipeline](assets/pfe/pipe-ai-pipeline.png)
+
+Full case study: [case-studies/industrial-pipe-counting.md](case-studies/industrial-pipe-counting.md)
 
 ## Main Technical Areas
 
@@ -87,4 +106,3 @@ This repository is not a dump of private company code. It is a structured techni
 - it gives supervisors and recruiters a clear starting point for technical discussion.
 
 For deeper technical interviews, I can discuss anonymized architectures, evaluation protocols, failure cases, and non-sensitive results.
-

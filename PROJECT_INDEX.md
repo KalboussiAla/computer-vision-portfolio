@@ -6,7 +6,9 @@ This index presents the full scope of my applied AI and computer vision work. So
 
 **Domain:** Industrial automation  
 **Core problem:** Detect and count packed industrial tubes/pipes.  
-**Methods:** YOLO, dataset correction, difficult-sample selection, NMS analysis, image-size experiments, precision/recall/MAE evaluation.  
+**Methods:** YOLO11M final model, YOLOv8/v9/v10/v11/v12/YOLO26 comparison, dataset correction, difficult-sample selection, NMS analysis, image-size experiments, segmentation tests, hybrid models, classifier-based orchestration, precision/recall/MAE evaluation.
+**Scale and result:** Improved from an initial reproduced baseline around 64% to 91.8% image-level accuracy, with 98.9% precision, 98.1% recall, and 0.6 MAE on real validation images.
+**Engineering:** 1310+ YOLO training runs, 10,000+ prediction/validation runs, online backend testing environment, and final model deployment in the client workflow.
 **Why it matters:** It replaces or assists manual counting, where errors and delays can affect production workflows.  
 **Case study:** [industrial-pipe-counting.md](case-studies/industrial-pipe-counting.md)
 
@@ -16,6 +18,7 @@ This index presents the full scope of my applied AI and computer vision work. So
 **Core problem:** Accelerate image annotation and correction for computer vision datasets.  
 **Methods:** React frontend, Go backend, gRPC, Redis, S3-compatible storage, YOLO/COCO-style flows, semi-annotation.  
 **Personal contribution:** Full frontend and part of backend.  
+**Connection to PFE:** Hydra supported the data loop behind model improvement: import, annotation, correction, filtering, export, retraining, and validation.
 **Case study:** [annotation-platform-hydra.md](case-studies/annotation-platform-hydra.md)
 
 ## 3. Video Counting with a Virtual Line
@@ -132,4 +135,3 @@ This index presents the full scope of my applied AI and computer vision work. So
 **Domain:** AI agents and product planning  
 **Core problem:** Automate project research, cost estimation, roadmap generation, supplier discovery, and execution planning.  
 **Methods concept:** Multi-AI workflow, web research, planning automation, AI-assisted decision support.
-

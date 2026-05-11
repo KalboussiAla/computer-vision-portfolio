@@ -6,6 +6,8 @@ Applied computer vision projects depend heavily on dataset quality. Model perfor
 
 Hydra is an internal annotation platform built to support computer vision workflows.
 
+In the PFE context, Hydra was directly linked to model improvement for industrial pipe counting: faster annotation, easier correction, cleaner exports, and more reliable dataset iteration.
+
 ## Problem
 
 The goal was to support:
@@ -23,10 +25,12 @@ The platform used a multi-component architecture:
 
 - React frontend for annotation and review workflows;
 - Go backend;
-- gRPC communication;
-- Redis for metadata/cache-like handling;
-- S3-compatible storage for images;
+- typed gRPC communication through `hydra_grpc`;
+- Redis for metadata, annotations, tags, indexes, bundles, and exports;
+- S3-compatible storage for image objects;
 - support for YOLO/COCO-style data flows.
+
+![Hydra architecture](../assets/pfe/hydra-architecture.png)
 
 ## Value
 
@@ -38,6 +42,8 @@ The platform was designed to reduce the delay between:
 4. finding mistakes;
 5. updating the dataset;
 6. retraining.
+
+![Hydra pipeline](../assets/pfe/hydra-pipeline.png)
 
 ## Key Lessons
 
@@ -52,4 +58,3 @@ The platform was designed to reduce the delay between:
 - Label quality estimation.
 - Human-in-the-loop model improvement.
 - Model-assisted annotation for dense or fine-grained tasks.
-
