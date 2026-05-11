@@ -84,16 +84,6 @@
       z-index: -2;
     }
 
-    #flow-field {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: .76;
-      pointer-events: none;
-    }
-
     header::after {
       content: "";
       position: absolute;
@@ -155,7 +145,7 @@
     .hero-metric strong {
       display: block;
       margin-bottom: 7px;
-      color: #ffffff;
+      color: #f7f8ff;
       font-size: 25px;
       line-height: 1;
     }
@@ -182,7 +172,7 @@
       padding: 10px 14px;
       border: 1px solid rgba(255,255,255,.42);
       border-radius: 8px;
-      color: white;
+      color: rgba(247, 248, 255, .96);
       background: rgba(255,255,255,.12);
       text-align: center;
       text-decoration: none;
@@ -193,8 +183,8 @@
 
     .button.primary {
       color: var(--dark);
-      background: white;
-      border-color: white;
+      background: linear-gradient(90deg, rgba(245, 246, 255, .92), rgba(205, 224, 255, .80), rgba(255, 208, 176, .82));
+      border-color: rgba(245, 246, 255, .64);
     }
 
     nav {
@@ -536,7 +526,7 @@
 
     .research-card.active {
       border-color: #9fcbd4;
-      background: linear-gradient(135deg, #ffffff, #eff8f9);
+      background: linear-gradient(135deg, rgba(245, 250, 255, .84), rgba(222, 244, 249, .72));
     }
 
     .detail-panel {
@@ -565,7 +555,7 @@
       z-index: 1;
       padding: 22px 24px;
       color: var(--muted);
-      background: rgba(255, 255, 255, .78);
+      background: rgba(255, 255, 255, .68);
       border-top: 1px solid var(--line);
     }
 
@@ -605,10 +595,415 @@
         backdrop-filter: none;
       }
     }
+    /* Huly-inspired dark product surface: CSS-only, no canvas animation. */
+    :root {
+      --ink: #f7f8ff;
+      --muted: #aeb7c7;
+      --accent: #86b6ff;
+      --accent-2: #ff9b6b;
+      --line: rgba(255,255,255,.12);
+      --panel: rgba(12, 16, 34, .64);
+      --soft: rgba(70, 126, 255, .18);
+      --soft-2: rgba(255, 155, 107, .12);
+      --dark: #050816;
+      --focus: rgba(147, 187, 255, .62);
+    }
+
+    html { background: #050816; }
+
+    body {
+      color: var(--ink);
+      background:
+        radial-gradient(circle at var(--mx) var(--my), rgba(47, 128, 255, .32), transparent 18rem),
+        radial-gradient(circle at 78% 18%, rgba(63, 107, 255, .34), transparent 28rem),
+        radial-gradient(circle at 13% 58%, rgba(20, 172, 255, .18), transparent 27rem),
+        radial-gradient(circle at 88% 78%, rgba(255, 122, 80, .11), transparent 25rem),
+        linear-gradient(180deg, rgba(5, 8, 22, .98) 0%, rgba(7, 13, 34, .98) 42%, rgba(5, 9, 22, .98) 100%);
+    }
+
+    body::before {
+      inset: 0;
+      opacity: .34;
+      background:
+        linear-gradient(90deg, transparent 0 49.82%, rgba(90, 156, 255, .95) 49.94%, rgba(169, 204, 255, .88) 50%, rgba(90, 156, 255, .95) 50.06%, transparent 50.18%),
+        radial-gradient(ellipse at 50% 8%, rgba(45, 112, 255, .70), transparent 23rem),
+        radial-gradient(ellipse at 50% 26%, rgba(55, 180, 255, .22), transparent 29rem),
+        radial-gradient(ellipse at 58% 84%, rgba(255, 157, 99, .13), transparent 30rem);
+      filter: blur(.1px);
+      transform: translateY(-14vh);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .22;
+      background-image:
+        radial-gradient(circle, rgba(124, 180, 255, .42) 0 1px, transparent 1.2px),
+        linear-gradient(rgba(96, 155, 255, .07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96, 155, 255, .06) 1px, transparent 1px);
+      background-size: 34px 34px, 96px 96px, 96px 96px;
+      mask-image: linear-gradient(180deg, black 0%, black 72%, transparent 100%);
+    }
+
+    header {
+      min-height: 820px;
+      align-items: flex-start;
+      padding-top: 86px;
+      background:
+        radial-gradient(ellipse at 50% 18%, rgba(68, 123, 255, .34), transparent 30rem),
+        radial-gradient(ellipse at 18% 46%, rgba(30, 167, 255, .18), transparent 24rem),
+        linear-gradient(180deg, rgba(5, 8, 22, .68), rgba(5, 8, 22, .28) 64%, transparent 100%);
+    }
+
+    header::before {
+      background:
+        linear-gradient(90deg, transparent 0 49.88%, rgba(83, 151, 255, .70) 49.96%, rgba(166, 205, 255, .90) 50%, rgba(83, 151, 255, .70) 50.04%, transparent 50.12%),
+        radial-gradient(ellipse at 50% 35%, rgba(56, 119, 255, .46), transparent 25rem);
+      box-shadow: inset 0 -180px 160px rgba(5, 8, 22, .82);
+      animation: none;
+    }
+
+    header::after {
+      background:
+        radial-gradient(circle at var(--mx) var(--my), rgba(78, 155, 255, .26), transparent 20%),
+        radial-gradient(circle at 50% 46%, rgba(143, 196, 255, .24), transparent 14rem);
+    }
+
+    .eyebrow { color: #b9c7ff; }
+    h1 {
+      max-width: 780px;
+      font-size: clamp(46px, 7vw, 88px);
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      color: #d9def0;
+      font-size: 19px;
+    }
+
+    .hero-metrics {
+      max-width: 980px;
+      margin-top: 30px;
+    }
+
+    .hero-metric,
+    .card,
+    .metric,
+    .flow-item,
+    .project,
+    .research-card,
+    .detail-panel,
+    .lab-panel,
+    .statement,
+    .vision-console {
+      background: rgba(10, 16, 36, .66);
+      border: 1px solid rgba(123, 179, 255, .16);
+      box-shadow: 0 24px 80px rgba(0,0,0,.30), inset 0 1px 0 rgba(154, 197, 255, .06);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-metric {
+      background: rgba(80, 134, 255, .08);
+    }
+
+    .button {
+      color: #eef2ff;
+      border-color: rgba(132, 185, 255, .24);
+      background: rgba(64, 112, 255, .10);
+    }
+
+    .button.primary {
+      color: #12131a;
+      background: linear-gradient(90deg, rgba(234, 242, 255, .90), rgba(160, 201, 255, .78) 62%, rgba(255, 203, 173, .82));
+      border-color: rgba(201, 224, 255, .52);
+      box-shadow: 0 0 34px rgba(74, 144, 255, .28), 0 0 30px rgba(255, 136, 72, .22);
+    }
+
+    .vision-console {
+      position: relative;
+      display: grid;
+      grid-template-columns: 72px 1.35fr .9fr;
+      gap: 1px;
+      max-width: 980px;
+      min-height: 290px;
+      margin-top: 58px;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+
+    .vision-console::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      pointer-events: none;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.16), 0 0 42px rgba(116,145,255,.42);
+    }
+
+    .vision-console::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(115deg, transparent 0 44%, rgba(100, 171, 255, .13) 49%, rgba(255, 169, 116, .09) 51%, transparent 56%);
+      transform: translateX(-130%);
+      animation: consoleSheen 7.5s ease-in-out infinite;
+    }
+
+    .console-rail,
+    .console-main,
+    .console-side {
+      min-width: 0;
+      padding: 18px;
+      background: rgba(6, 10, 24, .52);
+    }
+
+    .rail-dot,
+    .rail-pill {
+      display: block;
+      width: 34px;
+      height: 34px;
+      margin: 0 auto 14px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(87, 156, 255, .30), rgba(255,144,92,.18));
+      border: 1px solid rgba(129, 184, 255, .16);
+    }
+
+    .rail-pill {
+      height: 64px;
+      background: linear-gradient(180deg, rgba(255,140,86,.50), rgba(66,88,255,.18));
+    }
+
+    .console-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      color: #f7f8ff;
+      font-weight: 700;
+    }
+
+    .console-chip {
+      border-radius: 999px;
+      padding: 4px 8px;
+      color: #ffd5bd;
+      background: rgba(255,139,88,.14);
+      border: 1px solid rgba(255,139,88,.22);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .console-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .console-col {
+      min-height: 180px;
+      padding: 10px;
+      border-radius: 16px;
+      background: rgba(64, 118, 255, .055);
+      border: 1px solid rgba(126, 181, 255, .12);
+    }
+
+    .console-col strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #9fb0ff;
+      font-size: 12px;
+    }
+
+    .mini-card {
+      min-height: 54px;
+      margin-bottom: 8px;
+      padding: 9px;
+      border-radius: 14px;
+      color: #d8def0;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(126, 181, 255, .11);
+      font-size: 12px;
+    }
+
+    .console-side .mini-card { min-height: 46px; }
+
+    nav {
+      background: rgba(6, 10, 24, .66);
+      border-bottom-color: rgba(122, 176, 255, .12);
+    }
+
+    nav a { color: #dfe6ff; }
+    main {
+      background: linear-gradient(180deg, transparent, rgba(7, 13, 34, .56) 18%, rgba(5, 9, 22, .82));
+    }
+
+    h2, h3 { color: #f7f8ff; }
+    .lead, .card p, .card li, .flow-item p, .project span, .detail-panel p, .detail-panel li, .lab-panel p, .lab-panel li {
+      color: #aeb7c7;
+    }
+
+    .metric strong,
+    .project small,
+    .research-card small,
+    .tag {
+      color: #9fb0ff;
+    }
+
+    .tag {
+      background: rgba(123, 149, 255, .10);
+      border-color: rgba(159, 176, 255, .22);
+    }
+
+    .tag.green {
+      color: #ffd0b2;
+      background: rgba(255, 139, 88, .10);
+      border-color: rgba(255, 139, 88, .23);
+    }
+
+    .tab-button,
+    .filter-button,
+    .research-card {
+      color: #dfe6ff;
+      background: rgba(66, 119, 255, .08);
+      border-color: rgba(126, 181, 255, .15);
+    }
+
+    .tab-button.active,
+    .filter-button.active,
+    .research-card.active {
+      color: #10121a;
+      border-color: rgba(196, 222, 255, .56);
+      background: linear-gradient(90deg, rgba(232, 240, 255, .88), rgba(153, 199, 255, .74));
+    }
+
+    .card,
+    .metric,
+    .flow-item,
+    .project,
+    .research-card,
+    .detail-panel,
+    .lab-panel,
+    .statement,
+    .hero-metric {
+      border-radius: 18px;
+    }
+
+    .button,
+    .tab-button,
+    .filter-button {
+      border-radius: 14px;
+    }
+
+    .project,
+    .research-card,
+    .button,
+    .tab-button,
+    .filter-button,
+    .vision-console {
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .project:hover,
+    .research-card:hover,
+    .button:hover,
+    .tab-button:hover,
+    .filter-button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(159, 205, 255, .34);
+      box-shadow: 0 18px 54px rgba(37, 109, 255, .16);
+    }
+
+    .ripple-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 4;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .click-wave {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      margin: -12px 0 0 -12px;
+      border-radius: 999px;
+      border: 1px solid rgba(135, 190, 255, .62);
+      background:
+        radial-gradient(circle, rgba(118, 184, 255, .22) 0 10%, rgba(70, 142, 255, .12) 34%, transparent 68%);
+      mix-blend-mode: screen;
+      transform: scale(.18);
+      animation: waveBloom 1150ms cubic-bezier(.16, .84, .23, 1) forwards;
+    }
+
+    .click-wave.secondary {
+      border-color: rgba(74, 138, 255, .42);
+      background: radial-gradient(circle, rgba(56, 142, 255, .16), transparent 66%);
+      animation-duration: 1450ms;
+    }
+
+    .click-wave.tertiary {
+      border-color: rgba(255, 155, 107, .28);
+      background: radial-gradient(circle, rgba(255, 155, 107, .12), transparent 66%);
+      animation-duration: 1750ms;
+    }
+
+    @keyframes waveBloom {
+      0% {
+        opacity: .88;
+        transform: scale(.18);
+        filter: blur(0);
+      }
+      62% {
+        opacity: .36;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(22);
+        filter: blur(2px);
+      }
+    }
+
+    @keyframes consoleSheen {
+      0%, 42% { transform: translateX(-130%); }
+      68%, 100% { transform: translateX(130%); }
+    }
+
+    footer {
+      color: #8f9bae;
+      background: rgba(5, 8, 22, .78);
+      border-top-color: rgba(122, 176, 255, .12);
+    }
+
+    @media (max-width: 880px) {
+      header { min-height: auto; }
+      .vision-console { grid-template-columns: 1fr; }
+      .console-rail { display: none; }
+      .console-board { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      header { padding-top: 54px; }
+      h1 { font-size: clamp(42px, 14vw, 64px); }
+      .vision-console { display: none; }
+      .card,
+      .metric,
+      .flow-item,
+      .project,
+      .detail-panel,
+      .lab-panel,
+      .statement {
+        background: rgba(10, 16, 36, .74);
+      }
+    }
   </style>
 </head>
 <body>
-  <canvas id="flow-field" aria-hidden="true"></canvas>
+  <div class="ripple-layer" aria-hidden="true"></div>
   <header>
     <div class="wrap">
       <p class="eyebrow">Computer Vision | Applied AI | Research-Oriented Engineering</p>
@@ -626,6 +1021,50 @@
         <a class="button" href="#research">Research Compass</a>
         <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/PROJECT_INDEX.md">Project Index</a>
         <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/RESEARCH_DIRECTION.md">Research Direction</a>
+      </div>
+      <div class="vision-console" aria-hidden="true">
+        <div class="console-rail">
+          <span class="rail-dot"></span>
+          <span class="rail-pill"></span>
+          <span class="rail-dot"></span>
+          <span class="rail-dot"></span>
+        </div>
+        <div class="console-main">
+          <div class="console-title">
+            <span>Applied Vision Workspace</span>
+            <span class="console-chip">research-driven</span>
+          </div>
+          <div class="console-board">
+            <div class="console-col">
+              <strong>DATA</strong>
+              <div class="mini-card">Label correction loop</div>
+              <div class="mini-card">Difficult samples</div>
+              <div class="mini-card">20k+ annotations</div>
+            </div>
+            <div class="console-col">
+              <strong>MODELS</strong>
+              <div class="mini-card">Detection and counting</div>
+              <div class="mini-card">Embeddings and retrieval</div>
+              <div class="mini-card">Anomaly workflows</div>
+            </div>
+            <div class="console-col">
+              <strong>DEPLOY</strong>
+              <div class="mini-card">Online testing backend</div>
+              <div class="mini-card">Batch inference</div>
+              <div class="mini-card">Operational metrics</div>
+            </div>
+          </div>
+        </div>
+        <div class="console-side">
+          <div class="console-title">
+            <span>Focus</span>
+            <span class="console-chip">AI/CV</span>
+          </div>
+          <div class="mini-card">91.8% final counting accuracy</div>
+          <div class="mini-card">1310+ training runs</div>
+          <div class="mini-card">10k+ validation runs</div>
+          <div class="mini-card">Context-aware vision research</div>
+        </div>
       </div>
     </div>
   </header>
@@ -862,12 +1301,6 @@
   </footer>
 
   <script>
-    const canvas = document.getElementById("flow-field");
-    const ctx = canvas.getContext("2d");
-    let width = 0;
-    let height = 0;
-    let frame = 0;
-    let rafId = 0;
     const pointer = { x: 0.55, y: 0.42 };
 
     const labContent = {
@@ -1049,70 +1482,6 @@
       }
     };
 
-    function resizeCanvas() {
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.75);
-      width = canvas.offsetWidth;
-      height = canvas.offsetHeight;
-      canvas.width = Math.floor(width * ratio);
-      canvas.height = Math.floor(height * ratio);
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    }
-
-    function drawCanvas() {
-      ctx.clearRect(0, 0, width, height);
-      frame += 0.008;
-      const influenceX = (pointer.x - 0.5) * 90;
-      const influenceY = (pointer.y - 0.5) * 68;
-
-      const gradient = ctx.createRadialGradient(
-        pointer.x * width,
-        pointer.y * height,
-        10,
-        pointer.x * width,
-        pointer.y * height,
-        Math.max(width, height) * 0.42
-      );
-      gradient.addColorStop(0, "rgba(149, 238, 246, .20)");
-      gradient.addColorStop(0.45, "rgba(77, 171, 184, .08)");
-      gradient.addColorStop(1, "rgba(77, 171, 184, 0)");
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, height);
-
-      for (let layer = 0; layer < 8; layer += 1) {
-        const yBase = height * (0.14 + layer * 0.102);
-        const amplitude = 17 + layer * 5.2;
-        const speed = frame * (0.8 + layer * 0.08);
-        ctx.beginPath();
-        ctx.lineWidth = 1.25;
-        ctx.strokeStyle = `rgba(25, 112, 126, ${0.24 - layer * 0.016})`;
-
-        for (let x = -30; x <= width + 30; x += 12) {
-          const y =
-            yBase +
-            Math.sin(x * 0.009 + speed + layer) * amplitude +
-            Math.sin(x * 0.021 - speed * 1.4) * (amplitude * 0.38) +
-            Math.sin((x + influenceX) * 0.014 + speed) * (10 + pointer.y * 18) +
-            influenceY * (layer / 8);
-          if (x === -30) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-        ctx.stroke();
-      }
-
-      for (let i = 0; i < 18; i += 1) {
-        const angle = frame * 1.7 + i * 0.88;
-        const radius = 58 + (i % 6) * 28;
-        const x = pointer.x * width + Math.cos(angle) * radius;
-        const y = pointer.y * height + Math.sin(angle * 0.8) * radius * 0.56;
-        ctx.beginPath();
-        ctx.arc(x, y, 1.5 + (i % 3) * 0.6, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(32, 126, 140, .26)";
-        ctx.fill();
-      }
-
-      rafId = requestAnimationFrame(drawCanvas);
-    }
-
     function renderLab(tab) {
       const panel = document.getElementById("lab-panel");
       const content = labContent[tab];
@@ -1145,12 +1514,23 @@
       `;
     }
 
-    resizeCanvas();
-    drawCanvas();
     renderLab("data");
     renderResearch("brain");
 
-    window.addEventListener("resize", resizeCanvas);
+    const rippleLayer = document.querySelector(".ripple-layer");
+    function spawnClickWave(x, y) {
+      if (!rippleLayer) return;
+      ["", "secondary", "tertiary"].forEach((variant, index) => {
+        const wave = document.createElement("span");
+        wave.className = `click-wave ${variant}`.trim();
+        wave.style.left = `${x}px`;
+        wave.style.top = `${y}px`;
+        wave.style.animationDelay = `${index * 85}ms`;
+        rippleLayer.appendChild(wave);
+        wave.addEventListener("animationend", () => wave.remove(), { once: true });
+      });
+    }
+
     window.addEventListener("pointermove", (event) => {
       pointer.x = event.clientX / Math.max(window.innerWidth, 1);
       pointer.y = event.clientY / Math.max(window.innerHeight, 1);
@@ -1158,12 +1538,9 @@
       document.documentElement.style.setProperty("--my", `${Math.round(pointer.y * 100)}%`);
     });
 
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        cancelAnimationFrame(rafId);
-      } else {
-        rafId = requestAnimationFrame(drawCanvas);
-      }
+    window.addEventListener("pointerdown", (event) => {
+      if (event.button !== undefined && event.button !== 0) return;
+      spawnClickWave(event.clientX, event.clientY);
     });
 
     document.querySelectorAll(".tab-button").forEach((button) => {
