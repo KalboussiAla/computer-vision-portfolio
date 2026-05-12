@@ -197,6 +197,11 @@
       border-color: white;
     }
 
+    .language-toggle {
+      min-width: 54px;
+      cursor: pointer;
+    }
+
     nav {
       position: sticky;
       top: 0;
@@ -626,6 +631,7 @@
         <a class="button" href="#research">Research Compass</a>
         <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/PROJECT_INDEX.md">Project Index</a>
         <a class="button" href="https://github.com/KalboussiAla/computer-vision-portfolio/blob/main/RESEARCH_DIRECTION.md">Research Direction</a>
+        <button class="button language-toggle" type="button" id="language-toggle" aria-label="Switch language">FR</button>
       </div>
     </div>
   </header>
@@ -875,6 +881,10 @@
     let rafId = 0;
     const pointer = { x: 0.55, y: 0.42 };
     const ripples = [];
+    let currentLang = "en";
+    let currentLabTab = "data";
+    let currentResearchKey = "brain";
+    let currentProjectKey = null;
 
     const labContent = {
       data: {
@@ -929,6 +939,59 @@
       }
     };
 
+    const labContentFr = {
+      data: {
+        title: "Boucle data",
+        body: "Les gains les plus forts sont venus de la qualite des donnees, pas seulement du volume.",
+        points: [
+          "Correction de labels bruites et revue des cas difficiles.",
+          "Selection d'images difficiles et representatives.",
+          "Comparaison entre donnees curees et jeux plus grands mais moins fiables.",
+          "Suivi accuracy de comptage, precision, recall et MAE."
+        ]
+      },
+      preprocess: {
+        title: "Pretraitement",
+        body: "J'ai teste si rendre la structure geometrique plus explicite aidait la detection sur des objets denses et repetes.",
+        points: [
+          "Pretraitements orientes contours et edges.",
+          "Filtres structure/contraste avant entrainement ou evaluation.",
+          "Experiences de taille d'image et robustesse.",
+          "Analyse d'echec pour garder les idees utiles et rejeter les approches fragiles."
+        ]
+      },
+      annotation: {
+        title: "Variantes d'annotation",
+        body: "Plusieurs strategies d'annotation ont ete explorees pour comprendre le type de supervision le plus utile.",
+        points: [
+          "Bounding boxes classiques et correction de boxes.",
+          "Annotations plus groupees pour les cas denses.",
+          "Prototypes orientes segmentation lorsque les boxes n'etaient pas suffisantes.",
+          "Correction des predictions en annotations editables via des outils internes."
+        ]
+      },
+      testing: {
+        title: "Backend de test",
+        body: "Le modele a ete evalue dans un environnement d'inference proche d'un usage reel, pas seulement en notebook.",
+        points: [
+          "Workflow de test modele en ligne.",
+          "Predictions et validations reproductibles.",
+          "Evaluation batch et revue des sorties.",
+          "Contraintes de deploiement prises en compte avant la selection finale."
+        ]
+      },
+      deployment: {
+        title: "Logique de deploiement",
+        body: "Le choix final a equilibre performance, stabilite, vitesse, memoire et maintenabilite.",
+        points: [
+          "91.8% d'accuracy finale de comptage image-level.",
+          "0.6 erreur absolue moyenne de comptage par image.",
+          "1310+ runs d'entrainement et 10,000+ runs de prediction/validation.",
+          "Adaptation du modele pour des usages d'inventaire."
+        ]
+      }
+    };
+
     const researchContent = {
       brain: {
         title: "Brain-inspired efficient AI",
@@ -959,6 +1022,39 @@
         title: "Vision plus AI agents",
         text: "A model should not only output boxes or labels. It can become part of an agentic workflow that checks results, explains decisions, compares with history, asks for review, prepares reports, and helps humans act faster.",
         points: ["Agentic workflows", "Model review", "Automated reporting", "Decision support"]
+      }
+    };
+
+    const researchContentFr = {
+      brain: {
+        title: "IA efficace inspiree du cerveau",
+        text: "Les systemes IA modernes peuvent consommer beaucoup plus d'energie que l'intelligence biologique. Je veux etudier comment la neuroscience, l'attention, l'activation sparse, la memoire et l'apprentissage continu peuvent inspirer des modeles plus efficaces.",
+        points: ["Deep learning efficient", "Attention et calcul sparse", "Apprentissage continu", "Perception inspiree du cerveau"]
+      },
+      context: {
+        title: "Vision avec contexte",
+        text: "Un modele de vision detecte souvent des objets sans comprendre la situation. Je veux explorer des systemes ou un module de raisonnement compact apprend le contexte local et aide a reduire les faux positifs ou detecter des situations inhabituelles.",
+        points: ["Vision + petit LLM", "Reduction des faux positifs", "Contexte de scene", "Memoire locale"]
+      },
+      safety: {
+        title: "Vision pour securite routiere et publique",
+        text: "La computer vision peut aider a detecter anomalies routieres, comportements dangereux et risques publics, a condition de traiter la confidentialite et les contraintes de deploiement serieusement.",
+        points: ["Anomalies trafic", "Detection de risque", "Analyse respectueuse de la vie privee", "Alertes temps reel"]
+      },
+      climate: {
+        title: "IA pour operations sobres en energie",
+        text: "L'IA industrielle peut reduire pertes, redemarrages inutiles, attente, energie gaspillee et rejets. Je m'interesse aux systemes qui relient perception et optimisation des ressources.",
+        points: ["Reduction energie", "Reduction dechets", "Optimisation processus", "Automatisation durable"]
+      },
+      rare: {
+        title: "Evenements rares et anomalies",
+        text: "Les defauts, accidents, pannes et risques importants sont souvent rares. Je veux explorer comment les modeles fondation, la recherche par similarite, les donnees synthetiques et l'humain dans la boucle peuvent rendre cette detection plus fiable.",
+        points: ["Defauts avec peu d'exemples", "Detection anomalie", "Comprehension evenement", "Humain dans la boucle"]
+      },
+      agents: {
+        title: "Vision plus agents IA",
+        text: "Un modele ne doit pas seulement sortir des boxes ou labels. Il peut faire partie d'un workflow agentique qui verifie, explique, compare l'historique, demande une revue et prepare des rapports.",
+        points: ["Workflows agentiques", "Revue modele", "Reporting automatise", "Aide a la decision"]
       }
     };
 
@@ -1053,6 +1149,203 @@
         text: "Product concepts around agentic planning: research automation, cost estimation, roadmap generation, supplier discovery, and execution planning.",
         points: ["AI agents", "Planning automation", "Decision support", "Product strategy"]
       }
+    };
+
+    const projectDetailsFr = {
+      pfe: {
+        title: "Comptage industriel d'objets denses",
+        text: "Projet PFE confidentiel de comptage d'objets industriels denses et repetes. Elements publics: baseline reproduite autour de 64%, 91.8% d'accuracy finale image-level, 98.9% precision, 98.1% recall, 0.6 MAE, 1310+ runs d'entrainement et 10,000+ runs prediction/validation.",
+        points: ["Correction data-centric", "Tests contours/edges", "Experiences d'annotation", "Backend de test en ligne", "Selection de modele orientee deploiement"]
+      },
+      retail: {
+        title: "Reconnaissance retail fine-grained",
+        text: "Systeme de reconnaissance pour environ 500 classes produits visuellement proches, utilisant crops de detection, embeddings DINO, FAISS, kNN, adapters et backend de prediction.",
+        points: ["500 classes", "20k+ annotations", "DINOv2/DINOv3", "FAISS", "Evaluation top-k"]
+      },
+      backend: {
+        title: "Services backend de prediction",
+        text: "Workflows de deploiement type FastAPI pour inference en ligne et batch, avec sorties JSON, images annotees, exports ZIP, CORS, environnements GPU et tunneling securise.",
+        points: ["FastAPI", "Inference batch", "Deploiement GPU", "Sorties JSON/ZIP"]
+      },
+      annotation: {
+        title: "Plateforme annotation et dataset",
+        text: "Workflow interne pour importer images, corriger labels, filtrer datasets, convertir predictions en annotations editables et exporter des donnees pretes pour entrainement.",
+        points: ["React", "Go/gRPC", "Redis", "Stockage compatible S3", "Flux YOLO/COCO"]
+      },
+      quality: {
+        title: "Inspection qualite industrielle",
+        text: "Projet confidentiel d'inspection visuelle concu pour detecter des defauts avant une etape de fabrication irreversible. La version publique cache le materiau, le processus, le client et les classes exactes.",
+        points: ["Detection precoce defauts", "Controle qualite industriel", "Workflow anomalie reutilisable", "Reduction risque production"]
+      },
+      conveyor: {
+        title: "Comptage sur convoyeur",
+        text: "Workflow de comptage industriel pour lignes de production mobiles, centre sur detection, fiabilite du comptage, mouvement et reporting exploitable.",
+        points: ["Scenes convoyeur", "Comptage objets", "Reporting batch", "Robustesse operationnelle"]
+      },
+      thermal: {
+        title: "Detection de transition de processus",
+        text: "Modele de transition d'etat visuel pour detecter un changement de condition dans un processus. L'objectif etait de reduire l'energie gaspillee, l'attente et les relances machines inutiles.",
+        points: ["Transition d'etat", "Optimisation energie", "Automatisation processus", "Reduction couts"]
+      },
+      packaging: {
+        title: "Suivi completion packaging",
+        text: "Workflow video/vision pour detecter si des unites sont ouvertes, fermees, pretes, remplies, empilees ou palettisees, avec logique de comptage d'evenements.",
+        points: ["Machine a etats", "Comptage evenement", "Progression palette", "Logique ROI"]
+      },
+      cable: {
+        title: "QA installation calibree",
+        text: "Verification qualite assistee par vision pour assemblages lineaires, utilisant distances connues et informations capteur/contexte pour verifier placement et regularite des composants.",
+        points: ["Mesure computer vision", "Calibration", "Controle composants", "Inspection distance-aware"]
+      },
+      inventory: {
+        title: "Comptage inventaire industriel",
+        text: "Estimation de stock et comptage d'unites industrielles empilees, avec adaptation d'un modele de comptage vers une famille d'objets proche sans details sensibles.",
+        points: ["Estimation stock", "Adaptation modele", "Objets denses repetes", "Workflow inventaire"]
+      },
+      gallery: {
+        title: "Galerie de reference enrichie",
+        text: "Strategie de galerie de reference pour reduire le domain shift entre references propres et images reelles en rayon.",
+        points: ["Domain shift", "Variation references", "Benchmark backbones", "Evaluation retrieval"]
+      },
+      clustering: {
+        title: "Clustering automatique de produits",
+        text: "Regroupement automatique de crops produits avec embeddings et recherche de similarite pour accelerer le nettoyage de galeries de reference.",
+        points: ["Embeddings", "Seuils similarite", "FAISS", "Organisation dataset"]
+      },
+      line: {
+        title: "Comptage video par ligne virtuelle",
+        text: "Scripts d'analytics video pour compter les objets traversant une ligne virtuelle avec direction, anti-double-comptage, progression et rapports tableur.",
+        points: ["Lignes virtuelles", "Logique direction", "Anti-double-comptage", "Resumes Excel"]
+      },
+      longvideo: {
+        title: "Robustesse longues videos",
+        text: "Traitement batch de longues videos avec preservation de duree, controle FPS, compression, gestion de frames corrompues et stabilite des jobs longs.",
+        points: ["FFmpeg", "Controle FPS", "Frames corrompues", "ETA batch"]
+      },
+      pcb: {
+        title: "Detection d'anomalies PCB",
+        text: "Workflow d'inspection reference-vs-test utilisant alignement, SSIM, masques de difference, extraction de crops et controle de tolerance.",
+        points: ["OpenCV", "SSIM", "Alignement", "Crops anomalies"]
+      },
+      generic: {
+        title: "Concept few-example assiste par segmentation",
+        text: "Idee de recherche, pas presentee comme implementation terminee : segmenter les quelques exemples disponibles, extraire regions ou motifs recurrents, puis utiliser VLM ou retrieval pour trouver des images similaires.",
+        points: ["Concept seulement", "Segmentation exemples", "Decouverte motifs", "Retrieval vision-langage"]
+      },
+      ssri: {
+        title: "Concept SSRI",
+        text: "Concept de surveillance routiere intelligente autour du raisonnement par trajet, de l'estimation de vitesse moyenne et d'analytics de securite respectueux de la vie privee.",
+        points: ["Reconnaissance", "Raisonnement trajet", "Analytics securite", "Design privacy-aware"]
+      },
+      agents: {
+        title: "Idees produits avec agents IA",
+        text: "Concepts produits autour de la planification agentique : automatisation de recherche, estimation de couts, generation de roadmap, recherche fournisseurs et plan d'execution.",
+        points: ["Agents IA", "Automatisation planning", "Aide decision", "Strategie produit"]
+      }
+    };
+
+    const staticTranslationsFr = [
+      [".eyebrow", "Computer Vision | IA appliquee | Ingenierie orientee recherche"],
+      [".subtitle", "Je construis des systemes de computer vision a partir de donnees reelles imparfaites jusqu'a des workflows IA deployables : annotation, entrainement, evaluation, backend de test et integration operationnelle."],
+      [".hero-metric:nth-child(1) span", "accuracy finale image-level sur un PFE industriel confidentiel"],
+      [".hero-metric:nth-child(2) span", "erreur absolue moyenne de comptage par image evaluee"],
+      [".hero-metric:nth-child(3) span", "runs d'entrainement sur experiences controlees"],
+      [".hero-metric:nth-child(4) span", "runs de prediction et validation pendant l'iteration"],
+      [".actions .button.primary", "Cas d'etude PFE principal"],
+      [".actions a[href='#projects']", "Projets interactifs"],
+      [".actions a[href='#research']", "Direction recherche"],
+      [".actions a[href*='PROJECT_INDEX']", "Index projets"],
+      [".actions a[href*='RESEARCH_DIRECTION']", "Direction recherche"],
+      ["nav a[href='#profile']", "Profil"],
+      ["nav a[href='#projects']", "Projets"],
+      ["nav a[href='#data-platform']", "Plateforme data"],
+      ["nav a[href='#research']", "Recherche"],
+      ["nav a[href='#stack']", "Stack"],
+      ["nav a[href='#contact']", "Contact"],
+      ["#profile h2", "Profil IA appliquee"],
+      ["#profile .lead", "Mon travail est le plus fort quand le probleme n'est pas propre : objets denses, labels imparfaits, domain shift, longues videos, contraintes industrielles et besoin de vraies metriques."],
+      ["#profile .grid .card:nth-child(1) h3", "Computer vision industrielle"],
+      ["#profile .grid .card:nth-child(1) p", "Detection, comptage, inspection qualite, analytics video, logique ROI, mesures calibrees, batch processing et deploiement pour workflows operationnels."],
+      ["#profile .grid .card:nth-child(2) h3", "Reconnaissance fine-grained"],
+      ["#profile .grid .card:nth-child(2) p", "Reconnaissance de produits/SKU visuellement proches avec detection, embeddings, retrieval, adapters et ingenierie de galerie de reference."],
+      ["#profile .grid .card:nth-child(3) h3", "Ingenierie systemes IA"],
+      ["#profile .grid .card:nth-child(3) p", "Outils d'annotation, suivi d'experiences, environnements de test en ligne, services FastAPI, endpoints batch et deploiement GPU."],
+      ["#profile .grid .card:nth-child(4) h3", "Objectif international"],
+      ["#profile .grid .card:nth-child(4) p", "Master oriente recherche, stage IA appliquee ou role computer vision/deep learning ou je peux construire, etudier profondement et contribuer a une innovation deployable."],
+      ["#pfe h2", "PFE : Comptage industriel d'objets"],
+      ["#pfe .lead", "Projet computer vision industriel confidentiel centre sur le comptage d'objets denses et repetes dans des images operationnelles reelles. La version publique garde la valeur technique et les metriques sans divulguer noms internes, diagrammes, clients ou details sensibles."],
+      ["#pfe .metric:nth-child(1) span", "baseline initiale reproduite"],
+      ["#pfe .metric:nth-child(2) span", "accuracy finale image-level"],
+      ["#pfe .metric:nth-child(3) span", "precision sur images evaluees"],
+      ["#pfe .metric:nth-child(4) span", "recall sur images evaluees"],
+      ["#pfe .metric:nth-child(5) span", "erreur absolue moyenne par image"],
+      ["#pfe .metric:nth-child(6) span", "images curees battant un dataset plus grand mais bruite"],
+      ["#pfe .flow-item:nth-child(1) strong", "Reproduction baseline"],
+      ["#pfe .flow-item:nth-child(1) p", "Reconstruction du detecteur initial, verification du protocole d'evaluation et definition d'un point de depart fiable avant toute amelioration."],
+      ["#pfe .flow-item:nth-child(2) strong", "Ingenierie data et labels"],
+      ["#pfe .flow-item:nth-child(2) p", "Audit des labels, correction d'annotations incoherentes, selection d'exemples difficiles et test de strategies d'annotation alternatives."],
+      ["#pfe .flow-item:nth-child(3) strong", "Experiences de pretraitement"],
+      ["#pfe .flow-item:nth-child(3) p", "Exploration de preprocessing oriente edges, extraction de contours, filtres de contraste/structure et changements de taille d'image."],
+      ["#pfe .flow-item:nth-child(4) strong", "Prototypes avances"],
+      ["#pfe .flow-item:nth-child(4) p", "Exploration de segmentation, strategies objets denses, entrainement sur cas difficiles, combinaison de modeles et idees de routage sans exposer la logique interne."],
+      ["#pfe .flow-item:nth-child(5) strong", "Backend de test en ligne"],
+      ["#pfe .flow-item:nth-child(5) p", "Construction d'un environnement backend pour tester les modeles via des flux d'inference realistes au lieu de rester seulement sur notebooks locaux."],
+      ["#pfe .flow-item:nth-child(6) strong", "Resultat orientee deploiement"],
+      ["#pfe .flow-item:nth-child(6) p", "Selection du modele final selon accuracy, stabilite, vitesse, memoire, maintenabilite et reutilisation pour inventaire."],
+      ["#projects h2", "Carte interactive des projets"],
+      ["#projects > .lead", "Filtre le portfolio par famille de projets. Clique sur un projet pour ouvrir un resume technique public-safe."],
+      ["#data-platform h2", "Plateforme interne d'annotation et datasets"],
+      ["#data-platform .lead", "En parallele du travail modele, j'ai construit un workflow plateforme pour annotation, correction, filtrage, export et iteration dataset."],
+      ["#data-platform .grid .card:nth-child(1) h3", "Ce que la plateforme permet"],
+      ["#data-platform .grid .card:nth-child(1) li:nth-child(1)", "Import d'images avec ou sans labels."],
+      ["#data-platform .grid .card:nth-child(1) li:nth-child(2)", "Annotation manuelle et correction assistee."],
+      ["#data-platform .grid .card:nth-child(1) li:nth-child(3)", "Conversion de predictions en annotations editables."],
+      ["#data-platform .grid .card:nth-child(1) li:nth-child(4)", "Filtrage et preparation de datasets pour l'entrainement."],
+      ["#data-platform .grid .card:nth-child(1) li:nth-child(5)", "Export vers formats standards de computer vision."],
+      ["#data-platform .grid .card:nth-child(2) h3", "Architecture"],
+      ["#data-platform .grid .card:nth-child(2) p", "Interface frontend d'annotation, services backend, communication RPC typee, stockage metadata, object storage et workflows training/export."],
+      ["#data-platform .grid .card:nth-child(3) h3", "Pourquoi c'etait important"],
+      ["#data-platform .grid .card:nth-child(3) p", "Les meilleurs gains modele sont venus de boucles de correction plus rapides, d'une meilleure qualite de labels et d'un chemin plus controle des donnees operationnelles vers les donnees d'entrainement."],
+      ["#research h2", "Boussole recherche"],
+      ["#research .lead", "Je veux travailler a l'intersection de la computer vision, du deep learning, de l'IA efficace, des idees inspirees par la neuroscience et des systemes reels."],
+      ["#stack h2", "Stack technique"],
+      ["#stack .grid .card:nth-child(1) h3", "Vision et ML"],
+      ["#stack .grid .card:nth-child(2) h3", "Data et evaluation"],
+      ["#stack .grid .card:nth-child(3) h3", "Backend et deploiement"],
+      ["#stack .grid .card:nth-child(4) h3", "Ingenierie logicielle"],
+      ["#contact h2", "Confidentialite"],
+      ["#contact .statement", "Ce portfolio est volontairement public-safe. Il garde l'echelle, la direction technique et les resultats mesurables, tout en retirant noms internes, diagrammes specifiques, code proprietaire, images privees, poids de modeles et details sensibles."],
+      ["#project-detail.empty", "Selectionne un projet pour voir son resume technique."]
+    ];
+
+    const projectCardTranslationsFr = {
+      pfe: ["Comptage industriel d'objets denses", "Comptage d'objets denses avec entrainement data-centric, tests de pretraitement, backend d'evaluation et metriques orientees deploiement."],
+      retail: ["Reconnaissance retail fine-grained", "500 classes produits/SKU, crops de detection, embeddings, retrieval, adapters, evaluation top-k et 20k+ annotations."],
+      backend: ["Services backend de prediction", "APIs de prediction, inference batch, sorties JSON, images annotees, exports ZIP, CORS et deploiement GPU."],
+      annotation: ["Plateforme annotation et dataset", "Annotation human-in-the-loop, correction assistee, filtrage, export et iteration dataset."],
+      quality: ["Inspection qualite industrielle", "Detection visuelle d'anomalies avant une etape de production irreversible, decrite sans details objet/process."],
+      thermal: ["Detection de transition de processus", "Detection de transitions visuelles pour reduire energie gaspillee, attente et redemarrages inutiles."],
+      packaging: ["Suivi completion packaging", "Detection d'etats ouvert/ferme ou pret/non-pret pour compter les unites terminees et la progression palette."],
+      conveyor: ["Comptage sur convoyeur", "Comptage d'objets industriels sur lignes mobiles avec detection, tracking et reporting exploitable."],
+      cable: ["QA installation calibree", "Vision avec references de distance pour verifier placement et qualite de composants sur assemblages lineaires."],
+      inventory: ["Comptage inventaire industriel", "Comptage d'unites empilees et adaptation de modeles de comptage a de nouvelles familles d'objets."],
+      pcb: ["Detection d'anomalies PCB", "Alignement reference-test, SSIM, masques de difference, crops anomalies et tolerances."],
+      line: ["Comptage video par ligne virtuelle", "Logique de ligne virtuelle, direction, anti-double-comptage, progression batch, ETA et resumes tableur."],
+      longvideo: ["Robustesse longues videos", "Preservation duree, compression, controle FPS, frames corrompues et batch processing fiable."],
+      gallery: ["Galerie de reference enrichie", "Reduction du domain shift rayon-vs-studio avec references multiples, angles, lumieres et benchmarks backbone."],
+      clustering: ["Clustering automatique de produits", "Regroupement de crops produits par embeddings, recherche de similarite et tuning de seuils."],
+      generic: ["Concept few-example avec segmentation", "Idee recherche : segmenter les exemples, extraire motifs et utiliser VLM/retrieval pour augmenter les exemples."],
+      ssri: ["Concept SSRI", "Concept IA de securite routiere avec reconnaissance, raisonnement par route et analytics respectueux de la vie privee."],
+      agents: ["Idees produits avec agents IA", "Automatisation planning, recherche projet, estimation couts, roadmap et aide a la decision assistee par IA."]
+    };
+
+    const researchCardTranslationsFr = {
+      brain: ["IA efficace inspiree du cerveau", "Utiliser des idees de neuroscience pour reduire la consommation energetique et ameliorer l'efficacite d'apprentissage."],
+      context: ["Vision avec contexte", "Combiner modeles de vision et raisonnement contextuel compact pour reduire les faux positifs."],
+      safety: ["Vision securite routiere et publique", "Detecter evenements anormaux, comportements dangereux, anomalies trafic et risques."],
+      climate: ["IA pour operations sobres", "Utiliser l'intelligence visuelle pour reduire dechets, energie, delais et pertes evitables."],
+      rare: ["Evenements rares et anomalies", "Explorer la detection d'anomalies avec peu d'exemples en separant clairement travaux testes et idees recherche."],
+      agents: ["Vision plus agents IA", "Transformer les modeles visuels en outils qui raisonnent, verifient, expliquent et agissent dans des workflows."]
     };
 
     function resizeCanvas() {
@@ -1154,8 +1447,9 @@
     }
 
     function renderLab(tab) {
+      currentLabTab = tab;
       const panel = document.getElementById("lab-panel");
-      const content = labContent[tab];
+      const content = (currentLang === "fr" ? labContentFr : labContent)[tab];
       panel.innerHTML = `
         <h3>${content.title}</h3>
         <p>${content.body}</p>
@@ -1164,8 +1458,9 @@
     }
 
     function renderProject(key) {
+      currentProjectKey = key;
       const panel = document.getElementById("project-detail");
-      const detail = projectDetails[key];
+      const detail = currentLang === "fr" ? (projectDetailsFr[key] || projectDetails[key]) : projectDetails[key];
       panel.classList.remove("empty");
       panel.innerHTML = `
         <h3>${detail.title}</h3>
@@ -1176,8 +1471,9 @@
     }
 
     function renderResearch(key) {
+      currentResearchKey = key;
       const panel = document.getElementById("research-detail");
-      const detail = researchContent[key];
+      const detail = (currentLang === "fr" ? researchContentFr : researchContent)[key];
       panel.innerHTML = `
         <h3>${detail.title}</h3>
         <p>${detail.text}</p>
@@ -1185,10 +1481,113 @@
       `;
     }
 
+    const originalText = new Map();
+    function rememberText(selector) {
+      const node = document.querySelector(selector);
+      if (node && !originalText.has(selector)) originalText.set(selector, node.textContent);
+    }
+
+    staticTranslationsFr.forEach(([selector]) => rememberText(selector));
+
+    function setText(selector, text) {
+      const node = document.querySelector(selector);
+      if (node) node.textContent = text;
+    }
+
+    function setProjectCard(key, title, description, smallText) {
+      const card = document.querySelector(`.project[data-project="${key}"]`);
+      if (!card) return;
+      if (!card.dataset.enTitle) {
+        card.dataset.enTitle = card.childNodes[0].nodeValue.trim();
+        card.dataset.enDescription = card.querySelector("span").textContent;
+        card.dataset.enSmall = card.querySelector("small").textContent;
+      }
+      card.childNodes[0].nodeValue = `${title} `;
+      card.querySelector("span").textContent = description;
+      card.querySelector("small").textContent = smallText;
+    }
+
+    function restoreProjectCard(key) {
+      const card = document.querySelector(`.project[data-project="${key}"]`);
+      if (!card || !card.dataset.enTitle) return;
+      card.childNodes[0].nodeValue = `${card.dataset.enTitle} `;
+      card.querySelector("span").textContent = card.dataset.enDescription;
+      card.querySelector("small").textContent = card.dataset.enSmall;
+    }
+
+    function setResearchCard(key, title, description, smallText) {
+      const card = document.querySelector(`.research-card[data-research="${key}"]`);
+      if (!card) return;
+      if (!card.dataset.enTitle) {
+        card.dataset.enTitle = card.childNodes[0].nodeValue.trim();
+        card.dataset.enDescription = card.querySelector("span").textContent;
+        card.dataset.enSmall = card.querySelector("small").textContent;
+      }
+      card.childNodes[0].nodeValue = `\n          ${title}\n          `;
+      card.querySelector("span").textContent = description;
+      card.querySelector("small").textContent = smallText;
+    }
+
+    function restoreResearchCard(key) {
+      const card = document.querySelector(`.research-card[data-research="${key}"]`);
+      if (!card || !card.dataset.enTitle) return;
+      card.childNodes[0].nodeValue = `\n          ${card.dataset.enTitle}\n          `;
+      card.querySelector("span").textContent = card.dataset.enDescription;
+      card.querySelector("small").textContent = card.dataset.enSmall;
+    }
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.getElementById("language-toggle").textContent = lang === "fr" ? "EN" : "FR";
+
+      if (lang === "fr") {
+        staticTranslationsFr.forEach(([selector, text]) => setText(selector, text));
+        Object.entries(projectCardTranslationsFr).forEach(([key, value]) => setProjectCard(key, value[0], value[1], "Ouvrir details"));
+        Object.entries(researchCardTranslationsFr).forEach(([key, value]) => setResearchCard(key, value[0], value[1], "Ouvrir direction"));
+        document.querySelector('.filter-button[data-filter="all"]').textContent = "Tous";
+        document.querySelector('.filter-button[data-filter="industrial"]').textContent = "Industriel";
+        document.querySelector('.filter-button[data-filter="retail"]').textContent = "Retail";
+        document.querySelector('.filter-button[data-filter="video"]').textContent = "Video";
+        document.querySelector('.filter-button[data-filter="platform"]').textContent = "Plateforme";
+        document.querySelector('.filter-button[data-filter="process"]').textContent = "Process IA";
+        document.querySelector('.filter-button[data-filter="research"]').textContent = "Recherche";
+        document.querySelector('.tab-button[data-tab="data"]').textContent = "Boucle data";
+        document.querySelector('.tab-button[data-tab="preprocess"]').textContent = "Pretraitement";
+        document.querySelector('.tab-button[data-tab="annotation"]').textContent = "Variantes annotation";
+        document.querySelector('.tab-button[data-tab="testing"]').textContent = "Backend test";
+        document.querySelector('.tab-button[data-tab="deployment"]').textContent = "Logique deploiement";
+      } else {
+        originalText.forEach((text, selector) => setText(selector, text));
+        Object.keys(projectCardTranslationsFr).forEach(restoreProjectCard);
+        Object.keys(researchCardTranslationsFr).forEach(restoreResearchCard);
+        document.querySelector('.filter-button[data-filter="all"]').textContent = "All";
+        document.querySelector('.filter-button[data-filter="industrial"]').textContent = "Industrial";
+        document.querySelector('.filter-button[data-filter="retail"]').textContent = "Retail";
+        document.querySelector('.filter-button[data-filter="video"]').textContent = "Video";
+        document.querySelector('.filter-button[data-filter="platform"]').textContent = "Platform";
+        document.querySelector('.filter-button[data-filter="process"]').textContent = "Process AI";
+        document.querySelector('.filter-button[data-filter="research"]').textContent = "Research";
+        document.querySelector('.tab-button[data-tab="data"]').textContent = "Data loop";
+        document.querySelector('.tab-button[data-tab="preprocess"]').textContent = "Preprocessing";
+        document.querySelector('.tab-button[data-tab="annotation"]').textContent = "Annotation variants";
+        document.querySelector('.tab-button[data-tab="testing"]').textContent = "Testing backend";
+        document.querySelector('.tab-button[data-tab="deployment"]').textContent = "Deployment logic";
+      }
+
+      renderLab(currentLabTab);
+      renderResearch(currentResearchKey);
+      if (currentProjectKey) renderProject(currentProjectKey);
+    }
+
     resizeCanvas();
     drawCanvas();
     renderLab("data");
     renderResearch("brain");
+
+    document.getElementById("language-toggle").addEventListener("click", () => {
+      applyLanguage(currentLang === "en" ? "fr" : "en");
+    });
 
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("pointermove", (event) => {
